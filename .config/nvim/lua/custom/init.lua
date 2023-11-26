@@ -8,6 +8,7 @@
 
 -- 文字コード
 vim.opt.encoding = 'utf-8'
+vim.lsp.encoding = 'utf-8'
 
 -- 不可視文字
 vim.opt.expandtab = false
