@@ -6,6 +6,15 @@
 --   command = "tabdo wincmd =",
 -- })
 
+local notify = vim.notify
+vim.notify = function(msg, ...)
+    if msg:match("warning: multiple different client offset_encodings") then
+        return
+    end
+
+    notify(msg, ...)
+end
+
 -- 文字コード
 vim.opt.encoding = 'utf-8'
 vim.lsp.encoding = 'utf-8'
