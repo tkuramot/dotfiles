@@ -4,10 +4,19 @@ alias r='bundle exec rails'
 # git
 alias g='git'
 alias gs='git status'
+alias rs='bundle exec rspec'
+
+# git
+alias g='git'
+alias gs='git status -s'
 alias ga='git add'
 alias gc='git commit'
 alias gf='git fetch'
 alias gl='git log'
+alias gls='git log --stat'
+alias gld='git log -p'
+alias glo='git log --pretty=format:"%h - %an, %ar : %s"'
+alias glg='git log --pretty=format:"%h %s" --graph'
 
 # nvim
 alias vi='nvim'
