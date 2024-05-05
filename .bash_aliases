@@ -1,9 +1,5 @@
 # rails
 alias r='bundle exec rails'
-
-# git
-alias g='git'
-alias gs='git status'
 alias rs='bundle exec rspec'
 
 # git
@@ -21,6 +17,7 @@ alias glg='git log --pretty=format:"%h %s" --graph'
 # nvim
 alias vi='nvim'
 
+# pb*
 alias pbcopy='xclip -selection c'
 alias pbpaste='xclip -selection -o'
 
