@@ -12,8 +12,22 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
+# zsh options
 setopt correct
 setopt auto_cd
+
+# command completion
+# autoload predict-on
+# predict-on
+
+# vim-like key bindings
+bindkey -v
+
+# utility functions
+ggl() {
+  local url="https://google.co.jp/search?q=${*// /+}"
+  open $url
+}
 
 # general
 alias vi=nvim
@@ -48,6 +62,7 @@ alias cpp='c++ -std=c++2b'
 
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
+# cololize less man command
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
 export LESS_TERMCAP_me=$'\e[0m'
