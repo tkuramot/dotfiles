@@ -12,8 +12,9 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 setopt auto_cd
 
-# Alias
+# general
 alias vi=nvim
+alias myip='echo -n "private ip: "; ifconfig en0 | grep -i mask | awk "{print \$2}"; echo -n "public ip: "; curl -4 http://ifconfig.me; echo'
 
 alias l='lsd'
 alias ll='lsd -l'
