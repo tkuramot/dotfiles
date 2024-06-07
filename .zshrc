@@ -31,6 +31,7 @@ ggl() {
 
 # general
 alias vi=nvim
+alias share='python3 -m http.server 8000'
 alias myip='echo -n "private ip: "; ifconfig en0 | grep -i mask | awk "{print \$2}"; echo -n "public ip: "; curl -4 http://ifconfig.me; echo'
 
 alias l='lsd'
@@ -62,7 +63,7 @@ alias cpp='c++ -std=c++2b'
 
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
-# cololize less man command
+# cololize man command
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
 export LESS_TERMCAP_me=$'\e[0m'
