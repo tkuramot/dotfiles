@@ -1,11 +1,14 @@
 /*
 /.**
 
+!/.config/
 !/.config/nvim/
-!/.config/starship.toml
+!/.config/nvim/**
 !/.zshrc
 !/.bashrc
 !/.bash_aliases
 !/.default-npm-packages
 !/.gitconfig
 !/.gitignore
+
+.DS_Store
