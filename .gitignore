@@ -4,6 +4,7 @@
 !/.config/
 !/.config/nvim/
 !/.config/nvim/**
+/.config/nvim/lazy-lock.json
 !/.zshrc
 !/.bashrc
 !/.bash_aliases
