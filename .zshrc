@@ -12,9 +12,6 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 setopt auto_cd
 
-export USER="tkuramot"
-export MAIL="tkuramot@student.42tokyo.jp"
-
 # Alias
 alias vi=nvim
 
