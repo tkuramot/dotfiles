@@ -1,6 +1,8 @@
 /*
 /.**
 
+!/.bin/
+!/.bin/**
 !/.config/
 !/.config/starship.toml
 !/.config/nvim/
