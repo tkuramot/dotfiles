@@ -1,19 +1,19 @@
 scan_timeout = 10
 
+[aws]
+disabled = true
+
 [character]
-error_symbol = "[❯](bold red)"
-success_symbol = "[❯](bold green)"
+success_symbol = '[➜](bold green) '
+error_symbol = '[✗](bold red) '
+
+[c]
+format = "via [$symbol]($style)"
 
 [directory]
 truncation_length = 100
 truncate_to_repo = false
 truncation_symbol = "…/"
-
-[aws]
-disabled = true
-
-[c]
-format = "via [$symbol]($style)"
 
 [docker_context]
 format = "via [$symbol]($style)"
