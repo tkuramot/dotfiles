@@ -20,9 +20,3 @@ format = "via [$symbol]($style)"
 
 [git_branch]
 symbol = " "
-
-[username]
-style_user = "white bold"
-style_root = "black bold"
-format = "[$user]($style) "
-show_always = true
