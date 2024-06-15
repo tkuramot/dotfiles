@@ -52,7 +52,7 @@ alias ..3='cd ../../..'
 alias actest='c++ -std=c++2b main.cpp && oj t -d ./tests'
 alias cpp='c++ -std=c++2b'
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. "$HOME/.asdf/asdf.sh"
 
 # cololize man command
 export LESS_TERMCAP_mb=$'\e[1;32m'
