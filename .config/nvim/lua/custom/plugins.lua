@@ -89,8 +89,39 @@ local plugins = {
       require("telescope").load_extension "possession"
       require "custom.configs.possession"
     end,
+    keys = {
+      { "<leader>sl", ":Telescope possession list<CR>", desc = "List sessions" },
+    },
     lazy = false,
   },
+
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+    },
+  },
+
+  -- {
+  --   "chentoast/marks.nvim",
+  --   config = function()
+  --     require "custom.configs.marks"
+  --   end,
+  --   lazy = false,
+  -- },
 
   -- To make a plugin not be loaded
   -- {
