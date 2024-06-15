@@ -79,12 +79,17 @@ local plugins = {
   },
 
   {
-    "olimorris/persisted.nvim",
-    lazy = false, -- make sure the plugin is always loaded at startup
+    "jedrzejboczar/possession.nvim",
+    dependencies = {
+      {
+        "nvim-lua/plenary.nvim",
+      },
+    },
     config = function()
-      require("telescope").load_extension "persisted"
-      require "custom.configs.persisted"
+      require("telescope").load_extension "possession"
+      require "custom.configs.possession"
     end,
+    lazy = false,
   },
 
   -- To make a plugin not be loaded
