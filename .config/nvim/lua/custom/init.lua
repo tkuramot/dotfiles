@@ -8,21 +8,21 @@
 
 local notify = vim.notify
 vim.notify = function(msg, ...)
-    if msg:match("warning: multiple different client offset_encodings") then
-        return
-    end
+  if msg:match "warning: multiple different client offset_encodings" then
+    return
+  end
 
-    notify(msg, ...)
+  notify(msg, ...)
 end
 
 -- 文字コード
-vim.opt.encoding = 'utf-8'
-vim.lsp.encoding = 'utf-8'
+vim.opt.encoding = "utf-8"
+vim.lsp.encoding = "utf-8"
 
 -- 不可視文字
 vim.opt.expandtab = false
 vim.opt.tabstop = 2 -- タブ文字の幅
-vim.opt.shiftwidth = 2;
+vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.autoindent = true -- 改行時のインデント継続
 vim.opt.smartindent = true -- 改行時のインデントをいい感じに
@@ -30,12 +30,12 @@ vim.opt.breakindent = true
 vim.opt.smarttab = true
 vim.opt.list = true
 vim.opt.listchars = {
-	tab='▸-',
-	trail='-',
-	space='⋅',
-	extends='›',
-	precedes='‹',
-	nbsp='%',
+  tab = "▸-",
+  trail = "-",
+  space = "⋅",
+  extends = "›",
+  precedes = "‹",
+  nbsp = "%",
 }
 
 -- 文字列検索

@@ -47,16 +47,6 @@ local plugins = {
     end,
   },
 
-  -- { "Diogo-ss/42-header.nvim" },
-  { "42Paris/42header", lazy = false },
-
-  {
-    "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
-    opts = overrides.copilot,
-    lazy = false
-  },
-
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -70,13 +60,22 @@ local plugins = {
     opts = {
       sources = {
         { name = "nvim_lsp", group_index = 2 },
-        { name = "copilot",  group_index = 2 },
-        { name = "luasnip",  group_index = 2 },
-        { name = "buffer",   group_index = 2 },
+        { name = "copilot", group_index = 2 },
+        { name = "luasnip", group_index = 2 },
+        { name = "buffer", group_index = 2 },
         { name = "nvim_lua", group_index = 2 },
-        { name = "path",     group_index = 2 },
+        { name = "path", group_index = 2 },
       },
     },
+  },
+
+  { "42Paris/42header", lazy = false },
+
+  {
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    opts = overrides.copilot,
+    lazy = false,
   },
 
   -- To make a plugin not be loaded
