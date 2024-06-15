@@ -78,6 +78,15 @@ local plugins = {
     lazy = false,
   },
 
+  {
+    "olimorris/persisted.nvim",
+    lazy = false, -- make sure the plugin is always loaded at startup
+    config = function()
+      require("telescope").load_extension "persisted"
+      require "custom.configs.persisted"
+    end,
+  },
+
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
