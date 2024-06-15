@@ -17,3 +17,5 @@
 # `git dft` is less to type than `git difftool`.
 [alias]
   dft = difftool
+[core]
+	editor = vim
