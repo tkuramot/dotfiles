@@ -1,3 +1,5 @@
+export LANG=C
+
 eval "$(starship init zsh)"
 
 [[ -s ~/etc/profile.d/autojump.sh ]] && source ~/etc/profile.d/autojump.sh
