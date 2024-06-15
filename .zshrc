@@ -1,6 +1,7 @@
 eval "$(starship init zsh)"
 
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+[[ -s ~/etc/profile.d/autojump.sh ]] && source ~/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
 
 # zsh options
 setopt correct
