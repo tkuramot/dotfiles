@@ -15,19 +15,15 @@ vim.notify = function(msg, ...)
   notify(msg, ...)
 end
 
--- 文字コード
+-- input
 vim.opt.encoding = "utf-8"
 vim.lsp.encoding = "utf-8"
-
--- 不可視文字
-vim.opt.expandtab = false
-vim.opt.tabstop = 2 -- タブ文字の幅
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
-vim.opt.autoindent = true -- 改行時のインデント継続
-vim.opt.smartindent = true -- 改行時のインデントをいい感じに
+vim.opt.autoindent = true
+vim.opt.smartindent = true
 vim.opt.breakindent = true
 vim.opt.smarttab = true
+
+-- list
 vim.opt.list = true
 vim.opt.listchars = {
   tab = "▸-",
@@ -38,9 +34,9 @@ vim.opt.listchars = {
   nbsp = "%",
 }
 
--- 文字列検索
-vim.opt.incsearch = true -- 文字入力毎に検索
-vim.opt.ignorecase = true -- 大文字小文字を区別しない
-vim.opt.smartcase = true -- 大文字を含んでいる場合は区別する
-vim.opt.hlsearch = true -- 検索結果をハイライト
+-- search
+vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = true
 vim.opt.scrolloff = 10

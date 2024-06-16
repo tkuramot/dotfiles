@@ -9,9 +9,6 @@ possession.setup {
     on_load = true,
     on_quit = true,
   },
-  autoload = {
-    cwd = true,
-  },
   commands = {
     save = "SSave",
     load = "SLoad",

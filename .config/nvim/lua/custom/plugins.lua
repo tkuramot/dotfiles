@@ -71,6 +71,7 @@ local plugins = {
 
   { "42Paris/42header", lazy = false },
 
+  -- input support
   {
     "zbirenbaum/copilot.lua",
     event = "InsertEnter",
@@ -78,6 +79,99 @@ local plugins = {
     lazy = false,
   },
 
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+    lazy = false,
+  },
+
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require "custom.configs.hlchunk"
+    end,
+  },
+
+  {
+    "Wansmer/treesj",
+    dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
+    config = function()
+      require("treesj").setup {}
+      require("core.utils").load_mappings "treesj"
+    end,
+    lazy = false,
+  },
+
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  },
+
+  {
+    "nmac427/guess-indent.nvim",
+    config = function()
+      require("guess-indent").setup {}
+    end,
+    lazy = false,
+  },
+
+  -- outer tool integration
+  {
+    "sindrets/diffview.nvim",
+    config = function()
+      require("diffview").setup {}
+    end,
+    lazy = false,
+  },
+
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = function()
+      require("toggleterm").setup {}
+      require("core.utils").load_mappings "toggleterm"
+    end,
+    lazy = false,
+  },
+
+  -- disable nvchad's terminal plugin
+  {
+    "NvChad/nvterm",
+    enabled = false,
+  },
+
+  -- ui
+  {
+    "stevearc/aerial.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require "custom.configs.aerial"
+      require("core.utils").load_mappings "aerial"
+    end,
+    lazy = false,
+  },
+
+  {
+    "chentoast/marks.nvim",
+    config = function()
+      require("marks").setup {}
+    end,
+    lazy = false,
+  },
+
+  -- session management
   {
     "jedrzejboczar/possession.nvim",
     dependencies = {
@@ -94,34 +188,6 @@ local plugins = {
     },
     lazy = false,
   },
-
-  {
-    "kdheepak/lazygit.nvim",
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
-    },
-    -- optional for floating window border decoration
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    -- setting the keybinding for LazyGit with 'keys' is recommended in
-    -- order to load the plugin when the command is run for the first time
-    keys = {
-      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-    },
-  },
-
-  -- {
-  --   "chentoast/marks.nvim",
-  --   config = function()
-  --     require "custom.configs.marks"
-  --   end,
-  --   lazy = false,
-  -- },
 
   -- To make a plugin not be loaded
   -- {
