@@ -71,7 +71,7 @@ local plugins = {
 
   { "42Paris/42header", lazy = false },
 
-  -- input support
+  -- coding support
   {
     "zbirenbaum/copilot.lua",
     event = "InsertEnter",
@@ -124,7 +124,7 @@ local plugins = {
     lazy = false,
   },
 
-  -- outer tool integration
+  -- external tool integration
   {
     "sindrets/diffview.nvim",
     config = function()
