@@ -14,7 +14,7 @@ setopt auto_cd
 # predict-on
 
 # vim-like key bindings
-bindkey -v
+# bindkey -v
 
 # utility functions
 ggl() {
