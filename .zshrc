@@ -1,4 +1,4 @@
-export LANG=C
+# export LANG=C
 
 eval "$(starship init zsh)"
 

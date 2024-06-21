@@ -1,18 +1,19 @@
 /*
 /.**
 
+!.tool-versions
+!/.bash_aliases
+!/.bashrc
 !/.bin/
 !/.bin/**
 !/.config/
-!/.config/starship.toml
 !/.config/nvim/
 !/.config/nvim/**
-/.config/nvim/lazy-lock.json
-!/.zshrc
-!/.bashrc
-!/.bash_aliases
+!/.config/starship.toml
 !/.default-npm-packages
 !/.gitconfig
 !/.gitignore
+!/.zshrc
+/.config/nvim/lazy-lock.json
 
 .DS_Store

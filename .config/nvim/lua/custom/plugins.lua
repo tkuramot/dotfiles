@@ -82,6 +82,18 @@ local plugins = {
   },
 
   {
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
+      require "custom.configs.mason-lspconfig"
+    end,
+    dependencies = {
+      "williamboman/mason.nvim",
+      "neovim/nvim-lspconfig",
+    },
+    lazy = false,
+  },
+
+  {
     "windwp/nvim-ts-autotag",
     config = function()
       require("nvim-ts-autotag").setup()
