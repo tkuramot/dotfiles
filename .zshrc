@@ -1,7 +1,9 @@
 # export LANG=C
 
+# starship
 eval "$(starship init zsh)"
 
+# autojump
 [[ -s ~/etc/profile.d/autojump.sh ]] && source ~/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
 
@@ -21,6 +23,11 @@ ggl() {
   local url="https://google.co.jp/search?q=${*// /+}"
   open $url
 }
+
+# git-completion
+fpath=(~/.zsh $fpath)
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+autoload -Uz compinit && compinit
 
 # general
 alias vi=nvim
