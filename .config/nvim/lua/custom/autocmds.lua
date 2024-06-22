@@ -14,3 +14,16 @@ autocmd("BufReadPost", {
     end
   end,
 })
+
+autocmd({
+  "CursorMoved",
+  "InsertEnter",
+  "InsertLeave",
+  "WinEnter",
+  "BufEnter",
+}, {
+  pattern = "*",
+  callback = function()
+    vim.wo.relativenumber = vim.fn.line "." ~= 1
+  end,
+})

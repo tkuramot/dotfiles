@@ -30,14 +30,13 @@ M.mason = {
     "clang-format",
     "clangd",
     "css-lsp",
-    "deno",
     "gopls",
     "html-lsp",
     "json-lsp",
     "lua-language-server",
     "prettier",
+    "solargraph",
     "stylua",
-    "typescript-language-server",
   },
 }
 

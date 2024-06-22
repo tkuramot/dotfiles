@@ -2,8 +2,7 @@
 local M = {}
 
 M.general = {
-  n = {
-  }
+  n = {},
 }
 
 M.aerial = {
@@ -11,6 +10,14 @@ M.aerial = {
 
   n = {
     ["<leader>a"] = { "<cmd>AerialToggle!<CR>", "Toggle aerial" },
+  },
+}
+
+M.telescope = {
+  plugin = true,
+
+  n = {
+    ["<leader>fd"] = { "<cmd>Telescope diagnostics<CR>", "Find diagnostics" },
   },
 }
 
@@ -31,6 +38,14 @@ M.treesj = {
     ["<space>m"] = { "<cmd>TSJToggle<CR>", "Split or join code block with autodetect" },
     ["<space>j"] = { "<cmd>TSJJoin<CR>", "Join code block" },
     ["<space>s"] = { "<cmd>TSJSplit<CR>", "Split code block" },
+  },
+}
+
+M.posession = {
+  plugin = true,
+
+  n = {
+    ["<leader>sl"] = { ":Telescope possession list<CR>", "List sessions" },
   },
 }
 
