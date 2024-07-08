@@ -7,9 +7,10 @@ config.color_scheme = "Everforest Dark (Gogh)"
 config.font = wezterm.font("MesloLGS NF")
 config.font_size = 14.0
 config.initial_cols = 75
-config.initial_rows = 30
+config.initial_rows = 40
 
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = mappings.keys
+config.key_tables = mappings.key_tables
 
 return config
