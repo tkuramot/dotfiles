@@ -1,13 +1,34 @@
 local mason = require "mason"
 local mason_lspconfig = require "mason-lspconfig"
-local utils = require "core.utils"
 
 local lspconfig = require "lspconfig"
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
 mason.setup()
-mason_lspconfig.setup()
+mason_lspconfig.setup {
+  ensure_installed = {
+    "lua_ls",
+    "bashls",
+    "biome",
+    "clangd",
+    "cmake",
+    "cssls",
+    "denols",
+    "dockerls",
+    "docker_compose_language_service",
+    "gopls",
+    "html",
+    "jsonls",
+    "tsserver",
+    "marksman",
+    "pylsp",
+    "rust_analyzer",
+    "solidity_ls",
+    "sqlls",
+  },
+  automatic_install = true,
+}
 mason_lspconfig.setup_handlers {
   function(server_name)
     lspconfig[server_name].setup {
@@ -88,6 +109,33 @@ mason_lspconfig.setup_handlers {
           },
         },
       },
+    }
+
+    lspconfig.pylsp.setup {
+      settings = {
+        pylsp = {
+          plugins = {
+            pycodestyle = {
+              maxLineLength = 100,
+            },
+            pylsp_black = {
+              enabled = true,
+              line_length = 100,
+            },
+          },
+        },
+      },
+    }
+
+    lspconfig.rust_analyzer.setup {
+      settings = {
+        ["rust-analyzer"] = {
+          checkOnSave = {
+            command = "clippy",
+          },
+        },
+      },
+      on_attach = on_attach,
     }
   end,
 }

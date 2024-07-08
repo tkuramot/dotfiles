@@ -26,17 +26,9 @@ M.treesitter = {
 
 M.mason = {
   ensure_installed = {
-    "bash-language-server",
-    "clang-format",
-    "clangd",
-    "css-lsp",
-    "deno",
-    "eslint-lsp",
+    "black",
     "goimports",
-    "gopls",
-    "html-lsp",
-    "json-lsp",
-    "lua-language-server",
+    "isort",
     "prettier",
     "solargraph",
     "stylua",
