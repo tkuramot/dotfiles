@@ -1,6 +1,23 @@
-[user]
-	name = tkuramot
-	email = mabdman512@gmail.com
+# `git dft` is less to type than `git difftool`.
+[alias]
+  a = add
+  b = branch
+  c = commit
+  dft = difftool
+  f = fetch
+  lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+  lgd = log -p
+  lgs = log --stat
+  r = rebase
+  s = status -s
+  sw = switch
+
+[color]
+    ui = auto
+
+[core]
+	editor = vim
+	ignorecase = false
 
 [diff]
   external = difft
@@ -12,19 +29,30 @@
 [difftool "difftastic"]
   cmd = difft "$LOCAL" "$REMOTE"
 
+[fetch]
+  prune = true
+
+[grep]
+	lineNumer = true
+
+[init]
+	defaultBranch = main
+
 [pager]
   difftool = true
 
-# `git dft` is less to type than `git difftool`.
-[alias]
-  a = add
-  c = commit
-  s = status -s
-  f = fetch
-  dft = difftool
-  lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-  lgd = log -p
-  lgs = log --stat
+[pull]
+	rebase = true
+  ff = only
 
-[core]
-	editor = vim
+[push]
+	default = current
+  autoSetupRemote = true
+
+[rebase]
+  autoStash = true
+
+[user]
+	name = tkuramot
+	email = mabdman512@gmail.com
+
