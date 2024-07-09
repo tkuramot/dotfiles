@@ -16,7 +16,7 @@ setopt auto_cd
 # predict-on
 
 # vim-like key bindings
-# bindkey -v
+bindkey -v
 
 # utility functions
 ggl() {
@@ -40,17 +40,7 @@ alias la='lsd -a'
 alias lla='lsd -la'
 alias lt='lsd --tree'
 
-# git
 alias g='git'
-alias gs='git status -s'
-alias ga='git add'
-alias gc='git commit'
-alias gf='git fetch'
-alias gl='git log'
-alias gls='git log --stat'
-alias gld='git log -p'
-alias glo='git log --pretty=format:"%h - %an, %ar : %s"'
-alias glg='git log --pretty=format:"%h %s" --graph'
 
 # cd
 alias d='cd ~/Documents/'
