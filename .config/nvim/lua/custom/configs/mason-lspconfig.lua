@@ -8,24 +8,25 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 mason.setup()
 mason_lspconfig.setup {
   ensure_installed = {
-    "lua_ls",
     "bashls",
     "biome",
     "clangd",
     "cmake",
     "cssls",
     "denols",
-    "dockerls",
     "docker_compose_language_service",
+    "dockerls",
+    "efm",
     "gopls",
     "html",
     "jsonls",
-    "tsserver",
+    "lua_ls",
     "marksman",
     "pylsp",
     "rust_analyzer",
     "solidity_ls",
     "sqlls",
+    "tsserver",
   },
   automatic_install = true,
 }
@@ -136,6 +137,83 @@ mason_lspconfig.setup_handlers {
         },
       },
       on_attach = on_attach,
+    }
+
+    lspconfig.solidity_ls.setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "solidity" },
+      root_dir = lspconfig.util.find_git_ancestor,
+      single_file_support = true,
+    }
+
+    local solhint = require "efmls-configs.linters.solhint"
+    local forge_fmt = require('efmls-configs.formatters.forge_fmt')
+    local prettier_d = require "efmls-configs.formatters.prettier_d"
+    local luacheck = require "efmls-configs.linters.luacheck"
+    local stylua = require "efmls-configs.formatters.stylua"
+    local flake8 = require "efmls-configs.linters.flake8"
+    local black = require "efmls-configs.formatters.black"
+    local eslint = require "efmls-configs.linters.eslint"
+    local fixjson = require "efmls-configs.formatters.fixjson"
+    local shellcheck = require "efmls-configs.linters.shellcheck"
+    local shfmt = require "efmls-configs.formatters.shfmt"
+    local hadolint = require "efmls-configs.linters.hadolint"
+    local cpplint = require "efmls-configs.linters.cpplint"
+    local clangformat = require "efmls-configs.formatters.clang_format"
+
+    -- configure efm server
+    lspconfig.efm.setup {
+      filetypes = {
+        "solidity",
+        "lua",
+        "python",
+        "json",
+        "jsonc",
+        "sh",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "svelte",
+        "vue",
+        "markdown",
+        "docker",
+        "html",
+        "css",
+        "c",
+        "cpp",
+      },
+      init_options = {
+        documentFormatting = true,
+        documentRangeFormatting = true,
+        hover = true,
+        documentSymbol = true,
+        codeAction = true,
+        completion = true,
+      },
+      settings = {
+        languages = {
+          solidity = { solhint, forge_fmt },
+          lua = { luacheck, stylua },
+          python = { flake8, black },
+          typescript = { eslint, prettier_d },
+          json = { eslint, fixjson },
+          jsonc = { eslint, fixjson },
+          sh = { shellcheck, shfmt },
+          javascript = { eslint, prettier_d },
+          javascriptreact = { eslint, prettier_d },
+          typescriptreact = { eslint, prettier_d },
+          svelte = { eslint, prettier_d },
+          vue = { eslint, prettier_d },
+          markdown = { prettier_d },
+          docker = { hadolint, prettier_d },
+          html = { prettier_d },
+          css = { prettier_d },
+          c = { clangformat, cpplint },
+          cpp = { clangformat, cpplint },
+        },
+      },
     }
   end,
 }

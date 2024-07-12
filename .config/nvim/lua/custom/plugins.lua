@@ -60,11 +60,11 @@ local plugins = {
     opts = {
       sources = {
         { name = "nvim_lsp", group_index = 2 },
-        { name = "copilot",  group_index = 2 },
-        { name = "luasnip",  group_index = 2 },
-        { name = "buffer",   group_index = 2 },
+        { name = "copilot", group_index = 2 },
+        { name = "luasnip", group_index = 2 },
+        { name = "buffer", group_index = 2 },
         { name = "nvim_lua", group_index = 2 },
-        { name = "path",     group_index = 2 },
+        { name = "path", group_index = 2 },
       },
     },
   },
@@ -87,8 +87,9 @@ local plugins = {
       require "custom.configs.mason-lspconfig"
     end,
     dependencies = {
-      "williamboman/mason.nvim",
+      "creativenull/efmls-configs-nvim",
       "neovim/nvim-lspconfig",
+      "williamboman/mason.nvim",
     },
     lazy = false,
   },
@@ -136,6 +137,17 @@ local plugins = {
       require("guess-indent").setup {}
     end,
     lazy = false,
+  },
+
+  {
+    "Diogo-ss/42-C-Formatter.nvim",
+    cmd = "CFormat42",
+    config = function()
+      require("42-formatter").setup {
+        formatter = "c_formatter_42",
+        filetypes = { c = true, h = true, cpp = true, hpp = true },
+      }
+    end,
   },
 
   -- external tool integration

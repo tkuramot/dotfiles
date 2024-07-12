@@ -29,8 +29,9 @@ M.mason = {
     "black",
     "goimports",
     "isort",
-    "prettier",
+    "prettierd",
     "solargraph",
+    "solhint",
     "stylua",
   },
 }
