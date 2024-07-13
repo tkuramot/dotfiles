@@ -8,6 +8,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 mason.setup()
 mason_lspconfig.setup {
   ensure_installed = {
+    "astro",
     "bashls",
     "biome",
     "clangd",
@@ -147,42 +148,43 @@ mason_lspconfig.setup_handlers {
       single_file_support = true,
     }
 
-    local solhint = require "efmls-configs.linters.solhint"
-    local forge_fmt = require('efmls-configs.formatters.forge_fmt')
-    local prettier_d = require "efmls-configs.formatters.prettier_d"
-    local luacheck = require "efmls-configs.linters.luacheck"
-    local stylua = require "efmls-configs.formatters.stylua"
-    local flake8 = require "efmls-configs.linters.flake8"
     local black = require "efmls-configs.formatters.black"
+    local clangformat = require "efmls-configs.formatters.clang_format"
+    local cpplint = require "efmls-configs.linters.cpplint"
     local eslint = require "efmls-configs.linters.eslint"
     local fixjson = require "efmls-configs.formatters.fixjson"
+    local flake8 = require "efmls-configs.linters.flake8"
+    local forge_fmt = require('efmls-configs.formatters.forge_fmt')
+    local hadolint = require "efmls-configs.linters.hadolint"
+    local jq = require "efmls-configs.formatters.jq"
+    local luacheck = require "efmls-configs.linters.luacheck"
+    local prettier_d = require "efmls-configs.formatters.prettier_d"
     local shellcheck = require "efmls-configs.linters.shellcheck"
     local shfmt = require "efmls-configs.formatters.shfmt"
-    local hadolint = require "efmls-configs.linters.hadolint"
-    local cpplint = require "efmls-configs.linters.cpplint"
-    local clangformat = require "efmls-configs.formatters.clang_format"
+    local solhint = require "efmls-configs.linters.solhint"
+    local stylua = require "efmls-configs.formatters.stylua"
 
     -- configure efm server
     lspconfig.efm.setup {
       filetypes = {
-        "solidity",
-        "lua",
-        "python",
-        "json",
-        "jsonc",
-        "sh",
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "svelte",
-        "vue",
-        "markdown",
-        "docker",
-        "html",
-        "css",
         "c",
         "cpp",
+        "css",
+        "docker",
+        "html",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "jsonc",
+        "lua",
+        "markdown",
+        "python",
+        "sh",
+        "solidity",
+        "svelte",
+        "typescript",
+        "typescriptreact",
+        "vue",
       },
       init_options = {
         documentFormatting = true,
@@ -194,12 +196,12 @@ mason_lspconfig.setup_handlers {
       },
       settings = {
         languages = {
+          astro = { prettier_d },
           solidity = { solhint, forge_fmt },
           lua = { luacheck, stylua },
           python = { flake8, black },
           typescript = { eslint, prettier_d },
-          json = { eslint, fixjson },
-          jsonc = { eslint, fixjson },
+          json = { jq, fixjson },
           sh = { shellcheck, shfmt },
           javascript = { eslint, prettier_d },
           javascriptreact = { eslint, prettier_d },

@@ -38,3 +38,11 @@ vim.opt.scrolloff = 10
 -- line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
+
+vim.filetype.add {
+  extension = {
+    mdx = "mdx",
+  },
+}
+
+vim.treesitter.language.register("markdown", "mdx")

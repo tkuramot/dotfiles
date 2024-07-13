@@ -131,13 +131,13 @@ local plugins = {
     end,
   },
 
-  {
-    "nmac427/guess-indent.nvim",
-    config = function()
-      require("guess-indent").setup {}
-    end,
-    lazy = false,
-  },
+  -- {
+  --   "nmac427/guess-indent.nvim",
+  --   config = function()
+  --     require("guess-indent").setup {}
+  --   end,
+  --   lazy = false,
+  -- },
 
   {
     "Diogo-ss/42-C-Formatter.nvim",
@@ -195,6 +195,22 @@ local plugins = {
       require("marks").setup {}
     end,
     lazy = false,
+  },
+
+  {
+    "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("nvim-web-devicons").setup {
+        strict = true,
+        override_by_extension = {
+          astro = {
+            icon = "",
+            color = "#EF8547",
+            name = "astro",
+          },
+        },
+      }
+    end,
   },
 
   -- session management
