@@ -27,10 +27,12 @@ mason_lspconfig.setup {
     "rust_analyzer",
     "solidity_ls",
     "sqlls",
+    "tailwindcss",
     "tsserver",
   },
   automatic_install = true,
 }
+
 mason_lspconfig.setup_handlers {
   function(server_name)
     lspconfig[server_name].setup {
@@ -113,6 +115,22 @@ mason_lspconfig.setup_handlers {
       },
     }
 
+    lspconfig.cssls.setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = {
+        css = { validate = true, lint = {
+          unknownAtRules = "ignore",
+        } },
+        scss = { validate = true, lint = {
+          unknownAtRules = "ignore",
+        } },
+        less = { validate = true, lint = {
+          unknownAtRules = "ignore",
+        } },
+      },
+    }
+
     lspconfig.pylsp.setup {
       settings = {
         pylsp = {
@@ -154,7 +172,7 @@ mason_lspconfig.setup_handlers {
     local eslint = require "efmls-configs.linters.eslint"
     local fixjson = require "efmls-configs.formatters.fixjson"
     local flake8 = require "efmls-configs.linters.flake8"
-    local forge_fmt = require('efmls-configs.formatters.forge_fmt')
+    local forge_fmt = require "efmls-configs.formatters.forge_fmt"
     local hadolint = require "efmls-configs.linters.hadolint"
     local jq = require "efmls-configs.formatters.jq"
     local luacheck = require "efmls-configs.linters.luacheck"
