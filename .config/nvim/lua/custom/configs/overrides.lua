@@ -12,6 +12,7 @@ M.treesitter = {
     "markdown",
     "markdown_inline",
     "python",
+    "svelte",
     "tsx",
     "typescript",
     "vim",
