@@ -1,12 +1,5 @@
 # export LANG=C
 
-# starship
-eval "$(starship init zsh)"
-
-# autojump
-[[ -s ~/etc/profile.d/autojump.sh ]] && source ~/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
-
 # zsh options
 setopt correct
 setopt auto_cd
@@ -18,48 +11,19 @@ setopt auto_cd
 # vim-like key bindings
 bindkey -v
 
-# utility functions
-ggl() {
-  local url="https://google.co.jp/search?q=${*// /+}"
-  open $url
-}
+if [ -f ~/.zsh/aliases.zsh ]; then
+  source ~/.zsh/aliases.zsh
+fi
 
-# git-completion
-fpath=(~/.zsh $fpath)
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-autoload -Uz compinit && compinit
+if [ -f ~/.zsh/environment.zsh ]; then
+  source ~/.zsh/environment.zsh
+fi
 
-# general
-alias vi=nvim
-alias share='python3 -m http.server 8000'
-alias myip='echo -n "private ip: "; ifconfig en0 | grep -i mask | awk "{print \$2}"; echo -n "public ip: "; curl -4 http://ifconfig.me; echo'
+if [ -f ~/.zsh/functions.zsh ]; then
+  source ~/.zsh/functions.zsh
+fi
 
-alias l='lsd'
-alias ll='lsd -l'
-alias la='lsd -a'
-alias lla='lsd -la'
-alias lt='lsd --tree'
-
-alias g='git'
-
-# cd
-alias d='cd ~/Documents/'
-alias ..2='cd ../..'
-alias ..3='cd ../../..'
-
-# cpp
-alias actest='c++ -std=c++2b main.cpp && oj t -d ./tests'
-alias cpp='c++ -std=c++2b'
-
-. "$HOME/.asdf/asdf.sh"
-
-# cololize man command
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
-
-export PATH=~/.asdf/shims/:~/bin:$PATH
+# tool related settings. e.g. starship, asdf, git-completion, etc.
+if [ -f ~/.zsh/tools.zsh ]; then
+  source ~/.zsh/tools.zsh
+fi

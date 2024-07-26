@@ -17,7 +17,9 @@
 !/.gitignore
 !/.zshrc
 !/.zsh/
-!/.zsh/**
+!/.zsh/aliases.zsh
+!/.zsh/environment.zsh
+!/.zsh/functions.zsh
 /.config/nvim/lazy-lock.json
 
 .DS_Store
