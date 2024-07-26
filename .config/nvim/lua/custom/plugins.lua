@@ -82,6 +82,20 @@ local plugins = {
   },
 
   {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" },
+      { "nvim-lua/plenary.nvim" },
+    },
+    config = function()
+      require "custom.configs.copilot-chat"
+      require("core.utils").load_mappings "copilotchat"
+    end,
+    lazy = false,
+  },
+
+  {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require "custom.configs.mason-lspconfig"

@@ -5,6 +5,7 @@ M.treesitter = {
     "astro",
     "bash",
     "c",
+    "cpp",
     "css",
     "html",
     "javascript",

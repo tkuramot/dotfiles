@@ -13,6 +13,20 @@ M.aerial = {
   },
 }
 
+M.copilotchat = {
+  plugin = true,
+
+  n = {
+    ["<leader>cpb"] = { "<cmd>lua CopilotChatBuffer()<CR>", "Quick chat" },
+    ["<leader>cpa"] = { "<cmd>lua ShowCopilotChatActionPrompt()<CR>", "Show actions" },
+  },
+
+  v = {
+    ["<leader>cpb"] = { "<cmd>lua CopilotChatBuffer()<CR>", "Quick chat" },
+    ["<leader>cpa"] = { "<cmd>lua ShowCopilotChatActionPrompt()<CR>", "Show actions" },
+  },
+}
+
 M.telescope = {
   plugin = true,
 
