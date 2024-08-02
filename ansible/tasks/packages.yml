@@ -7,7 +7,25 @@
   include_vars: vars/deb.yml
   tags:
     - apt
+
 - block:
+  - name: Register GPG key and repository for APT packages
+    block:
+      - name: Add GPG key for repository
+        ansible.builtin.apt_key:
+          url: "{{ item.value.gpg_key }}"
+          keyring: "{{ item.value.keyring }}"
+          state: present
+        loop: "{{ apt | dict2items }}"
+        when: item.value.gpg_key is defined and item.value.keyring is defined and item.value.repo is defined
+
+      - name: Add APT repository
+        ansible.builtin.apt_repository:
+          repo: "{{ item.value.repo }}"
+          filename: "{{ item.key }}"
+          state: present
+        loop: "{{ apt | dict2items }}"
+        when: item.value.repo is defined
   - name: Update/Upgrade apt
     apt:
       update_cache: true
