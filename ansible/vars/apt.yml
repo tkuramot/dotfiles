@@ -4,10 +4,10 @@ apt:
   ftp:
   fzf:
   httpie:
+  bat:
   jq:
   net-tools:
   nmap:
   tree:
   wget:
   zsh:
-
