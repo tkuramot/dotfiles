@@ -12,7 +12,6 @@ apt:
   jq:
   net-tools:
   nmap:
-  neovim:
   tree:
   wget:
   wezterm:
