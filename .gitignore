@@ -20,6 +20,7 @@
 !/.zsh/environment.zsh
 !/.zsh/functions.zsh
 !/.zshrc
+!/README.md
 !/ansible/
 !/ansible/**
 /.config/nvim/lazy-lock.json
