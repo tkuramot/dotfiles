@@ -1,0 +1,14 @@
+---
+- block:
+  - name: Update/Upgrade apt
+    apt:
+      update_cache: true
+      upgrade: dist
+    - name: Manage apt packages
+      apt:
+        name: "{{ item.key }}"
+        state: "{{ item.value.state | default('latest') }}"
+      with_dict: "{{ apt }}"
+    become: true
+    when: ansible_os_family == "Debian"
+    tags: apt

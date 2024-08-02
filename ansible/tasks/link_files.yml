@@ -1,0 +1,12 @@
+---
+- name: link dotfiles
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  loop:
+    - { src: "~/.dotfiles/.gitconfig", dest: "~/.gitconfig" }
+    - { src: "~/.dotfiles/.zsh", dest: "~/.config/nvim" }
+    - { src: "~/.dotfiles/.zsh", dest: "~/.config/starship.toml" }
+    - { src: "~/.dotfiles/.zsh", dest: "~/.config/wezterm" }
+    - { src: "~/.dotfiles/.zshrc", dest: "~/.zshrc" }

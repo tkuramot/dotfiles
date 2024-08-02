@@ -1,0 +1,13 @@
+---
+apt:
+  ansible:
+  ftp:
+  fzf:
+  httpie:
+  jq:
+  net-tools:
+  nmap:
+  tree:
+  wget:
+  zsh:
+

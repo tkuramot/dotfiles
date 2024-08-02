@@ -9,17 +9,19 @@
 !/.config/
 !/.config/nvim/
 !/.config/nvim/**
+!/.config/starship.toml
 !/.config/wezterm/
 !/.config/wezterm/**
-!/.config/starship.toml
 !/.default-npm-packages
 !/.gitconfig
 !/.gitignore
-!/.zshrc
 !/.zsh/
 !/.zsh/aliases.zsh
 !/.zsh/environment.zsh
 !/.zsh/functions.zsh
+!/.zshrc
+!/ansible/
+!/ansible/**
 /.config/nvim/lazy-lock.json
 
 .DS_Store
