@@ -9,7 +9,7 @@
   vars:
     font_url: "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CodeNewRoman.zip"
     font_zip: "/tmp/CodeNewRoman.zip"
-    font_dir: "/usr/share/fonts/truetype/codenewroman"
+    font_dir: "/usr/local/share/fonts"
   become: yes
   block:
     - name: Ensure the font directory exists
