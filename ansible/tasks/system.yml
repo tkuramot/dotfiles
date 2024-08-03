@@ -29,13 +29,6 @@
         dest: "{{ font_dir }}"
         remote_src: yes
 
-    - name: Set the correct permissions for the font files
-      file:
-        path: "{{ font_dir }}"
-        state: directory
-        recurse: yes
-        mode: '0644'
-
     - name: Update font cache
       command: fc-cache -f -v
 
