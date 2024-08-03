@@ -1,16 +1,29 @@
 ---
 - name: Change default shell
+  become: yes
   user:
     name: "{{ lookup('env', 'USER') }}"
     shell: /bin/zsh
-  become: yes
 
-- name: Install CodeNewRoman font
+- name: Install system font
+  become: yes
+  block:
+    - name: Install noto fonts
+      apt:
+        name:
+          - fonts-noto-cjk
+          - fonts-noto-cjk-extra
+          - fonts-noto-color-emoji
+        state: present
+    - name: Update font cache
+      command: fc-cache -f -v
+
+- name: Install font for editor
+  become: yes
   vars:
     font_url: "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CodeNewRoman.zip"
     font_zip: "/tmp/CodeNewRoman.zip"
     font_dir: "/usr/local/share/fonts"
-  become: yes
   block:
     - name: Ensure the font directory exists
       file:
@@ -31,3 +44,30 @@
 
     - name: Update font cache
       command: fc-cache -f -v
+
+- name: Set local RTC
+  become: yes
+  command: timedatectl set-local-rtc true
+
+- name: Configure systemd-timesyncd
+  become: yes
+  block:
+    - name: Ensure /etc/systemd/timesyncd.conf is configured with the correct NTP server
+      lineinfile:
+        path: /etc/systemd/timesyncd.conf
+        regexp: '^#NTP='
+        line: 'NTP=ntp.nict.jp'
+        state: present
+
+    - name: Reload systemd configuration
+      systemd:
+        daemon_reload: yes
+
+    - name: Start systemd-timesyncd
+      systemd:
+        name: systemd-timesyncd
+        state: started
+        enabled: yes
+
+    - name: Enable NTP synchronization
+      command: timedatectl set-ntp true
