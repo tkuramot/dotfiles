@@ -9,5 +9,6 @@
     - { src: "~/.dotfiles/.config/starship.toml", dest: "~/.config/starship.toml" }
     - { src: "~/.dotfiles/.config/wezterm", dest: "~/.config/wezterm" }
     - { src: "~/.dotfiles/.gitconfig", dest: "~/.gitconfig" }
+    - { src: "~/.dotfiles/.tool-versions", dest: "~/.tool-versions" }
     - { src: "~/.dotfiles/.zsh", dest: "~/.zsh" }
     - { src: "~/.dotfiles/.zshrc", dest: "~/.zshrc" }

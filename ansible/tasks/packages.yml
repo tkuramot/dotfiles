@@ -44,3 +44,19 @@
   become: yes
   when: ansible_os_family == "Debian"
   tags: apt
+
+- name: Install asdf
+  vars:
+    asdf_version: v0.14.0
+  block:
+    - name: Clone asdf repository
+      git:
+        repo: https://github.com/asdf-vm/asdf.git
+        dest: "~/.asdf"
+        version: "{{ asdf_version }}"
+    - name: Add asdf to .zshrc
+      lineinfile:
+        path: "~/.zsh/tools.zsh"
+        line: '. "$HOME/.asdf/asdf.sh"'
+        state: present
+        create: yes

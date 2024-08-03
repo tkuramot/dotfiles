@@ -31,8 +31,3 @@
 
     - name: Update font cache
       command: fc-cache -f -v
-
-    - name: Clean up the downloaded zip file
-      file:
-        path: "{{ font_zip }}"
-        state: absent
