@@ -1,12 +1,12 @@
 ---
 - name: Change default shell
-  become: yes
+  become: true
   user:
     name: "{{ lookup('env', 'USER') }}"
     shell: /bin/zsh
 
 - name: Install system font
-  become: yes
+  become: true
   block:
     - name: Install noto fonts
       apt:
@@ -17,9 +17,10 @@
         state: present
     - name: Update font cache
       command: fc-cache -f -v
+  when: ansible_os_family == "Debian"
 
 - name: Install font for editor
-  become: yes
+  become: true
   vars:
     font_url: "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CodeNewRoman.zip"
     font_zip: "/tmp/CodeNewRoman.zip"
@@ -46,18 +47,24 @@
       command: fc-cache -f -v
 
 - name: Set local RTC
-  become: yes
+  become: true
   command: timedatectl set-local-rtc true
+  when: ansible_os_family == "Debian"
 
 - name: Configure systemd-timesyncd
-  become: yes
+  become: true
   block:
-    - name: Ensure /etc/systemd/timesyncd.conf is configured with the correct NTP server
-      lineinfile:
+    - name: Ensure /etc/systemd/timesyncd.conf exists
+      file:
         path: /etc/systemd/timesyncd.conf
-        regexp: '^#NTP='
-        line: 'NTP=ntp.nict.jp'
-        state: present
+        state: touch
+
+    - name: Ensure /etc/systemd/timesyncd.conf is configured with the correct NTP server
+      blockinfile:
+        path: /etc/systemd/timesyncd.conf
+        block: |
+          [Time]
+          NTP=ntp.nict.jp
 
     - name: Reload systemd configuration
       systemd:
@@ -71,3 +78,4 @@
 
     - name: Enable NTP synchronization
       command: timedatectl set-ntp true
+  when: ansible_os_family == "Debian"

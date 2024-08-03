@@ -17,7 +17,7 @@
           keyring: "{{ item.value.keyring }}"
           state: present
         loop: "{{ apt | dict2items }}"
-        when: item.value.gpg_key is defined and item.value.keyring is defined and item.value.repo is defined
+        when: item.value.gpg_key is defined and item.value.keyring is defined
 
       - name: Add APT repository
         ansible.builtin.apt_repository:
@@ -30,7 +30,7 @@
     apt:
       update_cache: true
       upgrade: dist
-    become: yes
+    become: true
   - name: Manage apt packages
     apt:
       name: "{{ item.key }}"
@@ -41,12 +41,49 @@
       deb: "{{ item.value }}"
       state: present
     with_dict: "{{ deb }}"
-  become: yes
+  become: true
   when: ansible_os_family == "Debian"
   tags: apt
 
+- name: Install jless
+  become: true
+  block:
+    - name: Download jless zip file
+      get_url:
+        url: https://github.com/PaulJuliusMartinez/jless/releases/download/v0.9.0/jless-v0.9.0-x86_64-unknown-linux-gnu.zip
+        dest: /tmp/jless.zip
+    - name: Unzip the downloaded zip file
+      unarchive:
+        src: /tmp/jless.zip
+        dest: /tmp/
+    - name: Copy the jless file to /usr/bin
+      copy:
+        src: /tmp/jless
+        dest: /usr/bin/jless
+        mode: '0755'
+  when: ansible_os_family == "Debian"
+
+
+- name: Install difftastic
+  become: true
+  block:
+    - name: Download difftastic tar file
+      get_url:
+        url: https://github.com/Wilfred/difftastic/releases/download/0.60.0/difft-x86_64-unknown-linux-gnu.tar.gz
+        dest: /tmp/difftastic.tar.gz
+    - name: Unarchive the downloaded tar file
+      unarchive:
+        src: /tmp/difftastic.tar.gz
+        dest: /tmp/
+    - name: Copy the difftastic file to /usr/bin
+      copy:
+        src: /tmp/difft
+        dest: /usr/bin/difft
+        mode: '0755'
+  when: ansible_os_family == "Debian"
+
 - name: Install zoxide
-  become: yes
+  become: true
   block:
     - name: Install zoxide using apt
       apt:
@@ -58,9 +95,10 @@
         line: 'eval "$(zoxide init zsh)"'
         state: present
         create: yes
+  when: ansible_os_family == "Debian"
 
 - name: Install bat
-  become: yes
+  become: true
   block:
     - name: Install bat using apt
       apt:
@@ -71,6 +109,7 @@
         src: /usr/bin/batcat
         dest: /usr/bin/bat
         state: link
+  when: ansible_os_family == "Debian"
 
 - name: Install asdf
   vars:

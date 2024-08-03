@@ -20,13 +20,9 @@
 [core]
 	editor = vim
 	ignorecase = false
-  pager = delta
-
-[delta]
-  navigate = true
 
 [diff]
-  colorMoved = default
+  external = difft
 
 [fetch]
   prune = true
@@ -39,12 +35,6 @@
 
 [interactive]
   diffFilter = delta --color-only
-
-[merge]
-  conflictstyle = diff3
-
-[pager]
-  difftool = true
 
 [pull]
 	rebase = true
@@ -60,4 +50,3 @@
 [user]
 	name = tkuramot
 	email = mabdman512@gmail.com
-

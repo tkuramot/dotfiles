@@ -14,7 +14,11 @@ apt:
   jq:
   net-tools:
   nmap:
+  ripgrep:
+  systemd-timesyncd:
+  sqlite3:
   tree:
+  unzip:
   wget:
   wezterm:
     gpg_key: https://apt.fury.io/wez/gpg.key
