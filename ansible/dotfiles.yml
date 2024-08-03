@@ -21,6 +21,6 @@
       tags:
         - packages
 
-    - include_tasks: tasks/shell.yml
+    - include_tasks: tasks/system.yml
       tags:
-        - shell
+        - system

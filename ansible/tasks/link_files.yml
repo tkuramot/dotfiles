@@ -5,8 +5,9 @@
     dest: "{{ item.dest }}"
     state: link
   loop:
-    - { src: "~/.dotfiles/.gitconfig", dest: "~/.gitconfig" }
     - { src: "~/.dotfiles/.config/nvim", dest: "~/.config/nvim" }
     - { src: "~/.dotfiles/.config/starship.toml", dest: "~/.config/starship.toml" }
     - { src: "~/.dotfiles/.config/wezterm", dest: "~/.config/wezterm" }
+    - { src: "~/.dotfiles/.gitconfig", dest: "~/.gitconfig" }
+    - { src: "~/.dotfiles/.zsh", dest: "~/.zsh" }
     - { src: "~/.dotfiles/.zshrc", dest: "~/.zshrc" }

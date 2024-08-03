@@ -34,11 +34,12 @@
   - name: Manage apt packages
     apt:
       name: "{{ item.key }}"
-      state: "{{ item.value.state | default('latest') }}"
+      state: "{{ item.value.state | default('present') }}"
     with_dict: "{{ apt }}"
   - name: Manage deb packages
     apt:
       deb: "{{ item.value }}"
+      state: present
     with_dict: "{{ deb }}"
   become: yes
   when: ansible_os_family == "Debian"
