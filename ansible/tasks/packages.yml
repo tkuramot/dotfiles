@@ -45,6 +45,33 @@
   when: ansible_os_family == "Debian"
   tags: apt
 
+- name: Install zoxide
+  become: yes
+  block:
+    - name: Install zoxide using apt
+      apt:
+        name: zoxide
+        state: present
+    - name: Setup zoxide
+      lineinfile:
+        path: "~/.zsh/tools.zsh"
+        line: 'eval "$(zoxide init zsh)"'
+        state: present
+        create: yes
+
+- name: Install bat
+  become: yes
+  block:
+    - name: Install bat using apt
+      apt:
+        name: bat
+        state: present
+    - name: Setup bat
+      file:
+        src: /usr/bin/batcat
+        dest: /usr/bin/bat
+        state: link
+
 - name: Install asdf
   vars:
     asdf_version: v0.14.0
@@ -58,5 +85,25 @@
       lineinfile:
         path: "~/.zsh/tools.zsh"
         line: '. "$HOME/.asdf/asdf.sh"'
+        state: present
+        create: yes
+
+- name: Install starship
+  block:
+    - name: Download starship installation script
+      get_url:
+        url: https://starship.rs/install.sh
+        dest: /tmp/starship_install.sh
+        mode: '0755'
+
+    - name: Run starship installation script
+      command: /tmp/starship_install.sh -f
+      args:
+        creates: /usr/local/bin/starship
+
+    - name: Add starship to .zshrc
+      lineinfile:
+        path: "~/.zsh/tools.zsh"
+        line: 'eval "$(starship init zsh)"'
         state: present
         create: yes
