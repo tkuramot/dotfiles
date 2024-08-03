@@ -4,3 +4,4 @@ deb:
   dropbox: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2024.04.17_amd64.deb
   obsidian: https://github.com/obsidianmd/obsidian-releases/releases/download/v1.6.7/obsidian_1.6.7_amd64.deb
   nvim: https://github.com/neovim/neovim-releases/releases/download/v0.10.1/nvim-linux64.deb
+  delta: https://github.com/dandavison/delta/releases/download/0.17.0/git-delta-musl_0.17.0_amd64.deb

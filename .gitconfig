@@ -20,16 +20,13 @@
 [core]
 	editor = vim
 	ignorecase = false
+  pager = delta
+
+[delta]
+  navigate = true
 
 [diff]
-  external = difft
-  tool = difftastic
-
-[difftool]
-  prompt = false
-
-[difftool "difftastic"]
-  cmd = difft "$LOCAL" "$REMOTE"
+  colorMoved = default
 
 [fetch]
   prune = true
@@ -39,6 +36,12 @@
 
 [init]
 	defaultBranch = main
+
+[interactive]
+  diffFilter = delta --color-only
+
+[merge]
+  conflictstyle = diff3
 
 [pager]
   difftool = true

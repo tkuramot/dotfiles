@@ -14,6 +14,10 @@
 !/.config/wezterm/**
 !/.default-npm-packages
 !/.gitconfig
+!/.github/
+!/.github/**
+!/.github/workflows/
+!/.github/workflows/**
 !/.gitignore
 !/.zsh/
 !/.zsh/aliases.zsh
