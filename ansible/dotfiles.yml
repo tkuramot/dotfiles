@@ -20,3 +20,7 @@
     - include_tasks: tasks/packages.yml
       tags:
         - packages
+
+    - include_tasks: tasks/shell.yml
+      tags:
+        - shell
