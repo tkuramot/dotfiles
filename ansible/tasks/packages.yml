@@ -7,6 +7,10 @@
   include_vars: vars/deb.yml
   tags:
     - apt
+- name: Include SNAP package list
+  include_vars: vars/snap.yml
+  tags:
+    - snap
 
 - block:
   - name: Register GPG key and repository for APT packages
@@ -39,11 +43,20 @@
   - name: Manage deb packages
     apt:
       deb: "{{ item.value }}"
-      state: present
+      state: "{{ item.value.state | default('present') }}"
     with_dict: "{{ deb }}"
   become: true
   when: ansible_os_family == "Debian"
   tags: apt
+
+- name: Install snap packages
+  snap:
+    name: "{{ item.key }}"
+    state: "{{ item.value.state | default('present') }}"
+  with_dict: "{{ snap }}"
+  become: true
+  when: ansible_os_family == "Debian"
+  tags: snap
 
 - name: Install jless
   become: true

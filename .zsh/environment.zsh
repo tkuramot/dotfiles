@@ -8,3 +8,8 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 export PATH=~/.asdf/shims/:~/bin:$PATH
+
+if [ uname = "Linux" ]; then
+  # run update-desktop-database for snap apps to show up in the menu
+  export XDG_DATA_DIR=$XDG_DATA_DIR:/var/lib/snapd/desktop/applications/
+fi
