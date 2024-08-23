@@ -5,20 +5,6 @@
     name: "{{ lookup('env', 'USER') }}"
     shell: /bin/zsh
 
-- name: Install system font
-  become: true
-  block:
-    - name: Install noto fonts
-      apt:
-        name:
-          - fonts-noto-cjk
-          - fonts-noto-cjk-extra
-          - fonts-noto-color-emoji
-        state: present
-    - name: Update font cache
-      command: fc-cache -f -v
-  when: ansible_os_family == "Debian"
-
 - name: Install font for editor
   become: true
   vars:
