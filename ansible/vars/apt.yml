@@ -12,9 +12,11 @@ apt:
   fzf:
   httpie:
   jq:
+  maven:
   net-tools:
   nmap:
   ripgrep:
+  seclists:
   snapd:
   systemd-timesyncd:
   sqlite3:
