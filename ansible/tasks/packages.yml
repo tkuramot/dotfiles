@@ -159,3 +159,22 @@
         line: 'eval "$(starship init zsh)"'
         state: present
         create: yes
+
+- name: Install ffuf
+  become: true
+  block:
+    - name: Download ffuf binary
+      get_url:
+        url: https://github.com/ffuf/ffuf/releases/download/v2.1.0/ffuf_2.1.0_linux_amd64.tar.gz
+        dest: /tmp/ffuf_amd64.tar.gz
+        mode: '0755'
+    - name: Unarchive the downloaded tar file
+      unarchive:
+        src: /tmp/ffuf_amd64.tar.gz
+        dest: /tmp/
+    - name: Copy the ffuf file to /usr/bin
+      copy:
+        src: /tmp/ffuf
+        dest: /usr/bin/ffuf
+        mode: '0755'
+  when: ansible_os_family == "Debian"
