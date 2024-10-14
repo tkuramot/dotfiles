@@ -17,7 +17,6 @@ apt:
   nmap:
   ripgrep:
   snapd:
-  systemd-timesyncd:
   sqlite3:
   tree:
   unzip:
