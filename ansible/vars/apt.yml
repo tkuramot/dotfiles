@@ -16,7 +16,6 @@ apt:
   net-tools:
   nmap:
   ripgrep:
-  seclists:
   snapd:
   systemd-timesyncd:
   sqlite3:
