@@ -17,4 +17,6 @@ alias d='cd ~/Documents/'
 alias ..2='cd ../..'
 alias ..3='cd ../../..'
 
+# tool-specific
+alias deit='docker exec -it'
 alias rustscan='docker run -it --rm --name rustscan rustscan/rustscan:2.1.1'
