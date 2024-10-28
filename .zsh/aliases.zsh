@@ -1,5 +1,4 @@
 # general
-alias vi=nvim
 alias share='python3 -m http.server 8000'
 alias myip='curl -4 http://ifconfig.me; echo'
 
