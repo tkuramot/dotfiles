@@ -8,6 +8,7 @@
       tags:
         - always
 
+    # Install dotfiles repository via ssh when possible otherwise via https
     - name: Test ssh connection to GitHub
       command: ssh -T git@github.com
       register: ssh_test
@@ -16,7 +17,6 @@
       failed_when: ssh_test.rc not in [1, 255]
       tags:
         - always
-
     - name: Make sure dotfiles are present
       git:
         repo: "{{ 'git@github.com:tkuramot/dotfiles.git' if ssh_test.rc == 1 else 'https://github.com/tkuramot/dotfiles.git' }}"
