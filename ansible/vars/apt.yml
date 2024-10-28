@@ -1,6 +1,5 @@
 ---
 apt:
-  ansible:
   brave-browser:
     gpg_key: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
     keyring: /usr/share/keyrings/brave-browser-archive-keyring.gpg
@@ -21,8 +20,4 @@ apt:
   tree:
   unzip:
   wget:
-  wezterm:
-    gpg_key: https://apt.fury.io/wez/gpg.key
-    keyring: /usr/share/keyrings/wezterm-fury.gpg
-    repo: 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *'
   zsh:
