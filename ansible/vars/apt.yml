@@ -11,8 +11,8 @@ apt:
   net-tools:
   nmap:
   ripgrep:
-  snapd:
   sqlite3:
+  strace:
   tree:
   unzip:
   wget:
