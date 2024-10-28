@@ -1,6 +1,16 @@
 ---
 deb:
-  discord: https://discord.com/api/download?platform=linux&format=deb
-  dropbox: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2024.04.17_amd64.deb
-  obsidian: https://github.com/obsidianmd/obsidian-releases/releases/download/v1.6.7/obsidian_1.6.7_amd64.deb
-  nvim: https://github.com/neovim/neovim-releases/releases/download/v0.10.1/nvim-linux64.deb
+  discord:
+    url: https://discord.com/api/download?platform=linux&format=deb
+    tags:
+      - pm
+  dropbox:
+    url: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2024.04.17_amd64.deb
+    tags:
+      - pm
+  obsidian:
+    url: https://github.com/obsidianmd/obsidian-releases/releases/download/v1.6.7/obsidian_1.6.7_amd64.deb
+    tags:
+      - pm
+  nvim:
+    url: https://github.com/neovim/neovim-releases/releases/download/v0.10.1/nvim-linux64.deb

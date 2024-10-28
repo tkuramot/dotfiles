@@ -7,56 +7,46 @@
   include_vars: vars/deb.yml
   tags:
     - apt
-- name: Include SNAP package list
-  include_vars: vars/snap.yml
-  tags:
-    - snap
 
-- block:
-  - name: Register GPG key and repository for APT packages
-    block:
-      - name: Add GPG key for repository
-        ansible.builtin.apt_key:
-          url: "{{ item.value.gpg_key }}"
-          keyring: "{{ item.value.keyring }}"
-          state: present
-        loop: "{{ apt | dict2items }}"
-        when: item.value.gpg_key is defined and item.value.keyring is defined
+- name: Install apt packages
+  block:
+    - name: Register GPG key and repository for APT packages
+      block:
+        - name: Add GPG key for repository
+          ansible.builtin.apt_key:
+            url: "{{ item.value.gpg_key }}"
+            keyring: "{{ item.value.keyring }}"
+            state: present
+          loop: "{{ apt | dict2items }}"
+          when: item.value.gpg_key is defined and item.value.keyring is defined
 
-      - name: Add APT repository
-        ansible.builtin.apt_repository:
-          repo: "{{ item.value.repo }}"
-          filename: "{{ item.key }}"
-          state: present
-        loop: "{{ apt | dict2items }}"
-        when: item.value.repo is defined
-  - name: Update/Upgrade apt
-    apt:
-      update_cache: true
-      upgrade: dist
-    become: true
-  - name: Manage apt packages
-    apt:
-      name: "{{ item.key }}"
-      state: "{{ item.value.state | default('present') }}"
-    with_dict: "{{ apt }}"
-  - name: Manage deb packages
-    apt:
-      deb: "{{ item.value }}"
-      state: "{{ item.value.state | default('present') }}"
-    with_dict: "{{ deb }}"
-  become: true
-  when: ansible_os_family == "Debian"
+        - name: Add APT repository
+          ansible.builtin.apt_repository:
+            repo: "{{ item.value.repo }}"
+            filename: "{{ item.key }}"
+            state: present
+          loop: "{{ apt | dict2items }}"
+          when: item.value.repo is defined
+    - name: Update/Upgrade apt
+      apt:
+        update_cache: true
+        upgrade: dist
+      become: true
+    - name: Manage apt packages
+      apt:
+        name: "{{ item.key }}"
+        state: "{{ item.value.state | default('present') }}"
+      with_dict: "{{ apt }}"
+      tags: "{{ item.value.tags | default(['apt']) }}"
+    - name: Manage deb packages
+      apt:
+        deb: "{{ item.value.url }}"
+        state: "{{ item.value.state | default('present') }}"
+      with_dict: "{{ deb }}"
+      tags: "{{ item.value.tags | default(['apt']) }}"
   tags: apt
-
-- name: Install snap packages
-  snap:
-    name: "{{ item.key }}"
-    state: "{{ item.value.state | default('present') }}"
-  with_dict: "{{ snap }}"
-  become: true
   when: ansible_os_family == "Debian"
-  tags: snap
+  become: true
 
 - name: Install jless
   become: true

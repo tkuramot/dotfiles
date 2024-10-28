@@ -4,6 +4,8 @@ apt:
     gpg_key: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
     keyring: /usr/share/keyrings/brave-browser-archive-keyring.gpg
     repo: "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"
+    tags:
+      - pm
   curl:
   fcitx5-mozc:
   fd-find:
