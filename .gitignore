@@ -24,6 +24,7 @@
 !/.zsh/environment.zsh
 !/.zsh/functions.zsh
 !/.zshrc
+!/Makefile
 !/README.md
 !/ansible/
 !/ansible/**
