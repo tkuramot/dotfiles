@@ -228,20 +228,20 @@ local plugins = {
   },
 
   -- session management
-  {
-    "jedrzejboczar/possession.nvim",
-    dependencies = {
-      {
-        "nvim-lua/plenary.nvim",
-      },
-    },
-    config = function()
-      require("telescope").load_extension "possession"
-      require("core.utils").load_mappings "posession"
-      require "custom.configs.possession"
-    end,
-    lazy = false,
-  },
+  -- {
+  --   "jedrzejboczar/possession.nvim",
+  --   dependencies = {
+  --     {
+  --       "nvim-lua/plenary.nvim",
+  --     },
+  --   },
+  --   config = function()
+  --     require("telescope").load_extension "possession"
+  --     require("core.utils").load_mappings "posession"
+  --     require "custom.configs.possession"
+  --   end,
+  --   lazy = false,
+  -- },
 
   -- To make a plugin not be loaded
   -- {

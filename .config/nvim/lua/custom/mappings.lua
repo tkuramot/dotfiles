@@ -55,13 +55,13 @@ M.treesj = {
   },
 }
 
-M.posession = {
-  plugin = true,
-
-  n = {
-    ["<leader>sl"] = { ":Telescope possession list<CR>", "List sessions" },
-  },
-}
+-- M.posession = {
+--   plugin = true,
+--
+--   n = {
+--     ["<leader>sl"] = { ":Telescope possession list<CR>", "List sessions" },
+--   },
+-- }
 
 -- more keybinds!
 

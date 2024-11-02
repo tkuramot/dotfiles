@@ -1,5 +1,7 @@
 ---
 apt:
+  build-essential:
+  clangd:
   curl:
   fcitx5-mozc:
   fd-find:

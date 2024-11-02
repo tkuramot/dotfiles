@@ -29,7 +29,7 @@ mason_lspconfig.setup {
     "sqlls",
     "svelte",
     "tailwindcss",
-    "tsserver",
+    "ts_ls",
   },
   automatic_install = true,
 }
@@ -85,7 +85,7 @@ mason_lspconfig.setup_handlers {
       },
     }
 
-    lspconfig.tsserver.setup {
+    lspconfig.ts_ls.setup {
       capabilities = capabilities,
       on_attach = on_attach,
       root_dir = lspconfig.util.root_pattern "package.json",
