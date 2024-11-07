@@ -73,6 +73,15 @@ mason_lspconfig.setup_handlers {
       },
     }
 
+    lspconfig.clangd.setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      cmd = {
+        "clangd",
+        "--offset_encoding=utf-16",
+      }
+    }
+
     lspconfig.lua_ls.setup {
       capabilities = capabilities,
       on_attach = on_attach,
