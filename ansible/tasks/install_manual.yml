@@ -7,7 +7,7 @@
       shell: |
         curl -L -o /tmp/difftastic.tar.gz https://github.com/Wilfred/difftastic/releases/download/0.60.0/difft-x86_64-unknown-linux-gnu.tar.gz
         tar xzf /tmp/difftastic.tar.gz -C /tmp/
-        cp /tmp/difft/difft /usr/bin/difft
+        cp /tmp/difft /usr/bin/difft
         chmod 0755 /usr/bin/difft
       args:
         creates: /usr/bin/difft

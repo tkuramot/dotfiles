@@ -7,7 +7,7 @@
       tags: always
       include_vars: ../vars.yml
 
-    # do not use git module for simplicity
+    # git module is not used for simplicity
     - name: Install dotfiles repository via ssh or https
       tags: always
       args:
