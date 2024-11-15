@@ -29,6 +29,10 @@
       tags:
         - links
 
-    - import_tasks: tasks/packages.yml
+    - import_tasks: tasks/install_packages.yml
       tags:
         - packages
+
+    - import_tasks: tasks/install_manual.yml
+      tags:
+        - manual

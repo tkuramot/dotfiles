@@ -1,0 +1,12 @@
+---
+- name: Include apt package list
+  include_vars: vars/apt.yml
+
+- name: Install apt packages
+  become: true
+  when: ansible_os_family == "Debian"
+  apt:
+    name: "{{ item.key }}"
+    update_cache: true
+    state: "{{ item.value.state | default('present') }}"
+  with_dict: "{{ apt }}"

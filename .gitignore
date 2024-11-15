@@ -23,6 +23,7 @@
 !/.zsh/aliases.zsh
 !/.zsh/environment.zsh
 !/.zsh/functions.zsh
+!/.zsh/tools.zsh
 !/.zshrc
 !/Makefile
 !/README.md
