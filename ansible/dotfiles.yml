@@ -4,35 +4,26 @@
   connection: local
   tasks:
     - name: Load custom vars
+      tags: always
       include_vars: ../vars.yml
-      tags:
-        - always
 
-    # Install dotfiles repository via ssh when possible otherwise via https
-    - name: Test ssh connection to GitHub
-      command: ssh -T git@github.com
-      register: ssh_test
-      ignore_errors: true
-      changed_when: false
-      failed_when: ssh_test.rc not in [1, 255]
-      tags:
-        - always
-    - name: Make sure dotfiles are present
-      git:
-        repo: "{{ 'git@github.com:tkuramot/dotfiles.git' if ssh_test.rc == 1 else 'https://github.com/tkuramot/dotfiles.git' }}"
-        dest: ~/.dotfiles
-        accept_hostkey: true
-      tags:
-        - always
+    # do not use git module for simplicity
+    - name: Install dotfiles repository via ssh or https
+      tags: always
+      args:
+        creates: "{{ ansible_env.HOME }}/.dotfiles"
+      shell: |
+        if ssh -T git@github.com 2>&1 | grep -q "successfully"; then
+          git clone git@github.com:tkuramot/dotfiles.git "{{ ansible_env.HOME }}/.dotfiles"
+        else
+          git clone https://github.com/tkuramot/dotfiles.git "{{ ansible_env.HOME }}/.dotfiles"
+        fi
 
     - import_tasks: tasks/link_files.yml
-      tags:
-        - links
+      tags: links
 
     - import_tasks: tasks/install_packages.yml
-      tags:
-        - packages
+      tags: packages
 
     - import_tasks: tasks/install_manual.yml
-      tags:
-        - manual
+      tags: manual
