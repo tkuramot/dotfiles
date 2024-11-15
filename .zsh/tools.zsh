@@ -1,5 +1,5 @@
 # asdf
-[ -e "$HOME/.asdf/asdf.sh"] && . "$HOME/.asdf/asdf.sh"
+[ -e "$HOME/.asdf/asdf.sh" ] && . "$HOME/.asdf/asdf.sh"
 fpath=(${ASDF_DIR}/completions $fpath)
 
 # starship
