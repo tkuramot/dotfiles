@@ -14,6 +14,3 @@ alias ..3='cd ../../..'
 # tool-specific
 alias deit='docker exec -it'
 alias rustscan='docker run -it --rm --name rustscan rustscan/rustscan:2.1.1'
-
-alias rails='docker compose exec backend ./bin/rails'
-alias rspec='docker compose exec backend ./bin/rspec'

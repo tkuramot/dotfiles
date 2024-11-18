@@ -3,10 +3,6 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: Load custom vars
-      tags: always
-      include_vars: ../vars.yml
-
     # git module is not used for simplicity
     - name: Install dotfiles repository via ssh or https
       tags: always
