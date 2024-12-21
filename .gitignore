@@ -19,6 +19,7 @@
 !/.github/workflows/
 !/.github/workflows/**
 !/.gitignore
+!/.vimrc
 !/.zsh/
 !/.zsh/aliases.zsh
 !/.zsh/environment.zsh
