@@ -12,6 +12,8 @@
 !/.config/starship.toml
 !/.config/wezterm/
 !/.config/wezterm/**
+!/.config/ghostty/
+!/.config/ghostty/**
 !/.default-npm-packages
 !/.gitconfig
 !/.github/
