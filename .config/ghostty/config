@@ -1,2 +1,11 @@
 theme = Builtin Solarized Light
 font-feature = -dlig
+
+window-height = 40
+window-width = 120
+
+quick-terminal-position = "top"
+quick-terminal-screen = "mouse"
+quick-terminal-animation-duration = 0
+
+keybind = "global:super+j+=toggle_quick_terminal"
