@@ -1,6 +1,7 @@
 local opt = vim.opt
 
-opt.ambiwidth = 'double'
+-- opt.ambiwidth = 'double'
+opt.splitright = true
 
 -- list
 opt.list = true
