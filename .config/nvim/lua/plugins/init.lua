@@ -1,3 +1,5 @@
+-- TODO: set nohl on ESC
+
 return {
   -- ui
   {
@@ -15,14 +17,20 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function ()
+    config = function()
       require('lualine').setup()
+    end
+  },
+  {
+    "j-hui/fidget.nvim",
+    config = function()
+      require('fidget').setup()
     end
   },
   {
     'stevearc/oil.nvim',
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
-    config = function ()
+    config = function()
       require('oil').setup()
     end
   },
@@ -49,15 +57,7 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     config = function()
-      require('gitsigns').setup({})
-    end
-  },
-  {
-    'sidebar-nvim/sidebar.nvim',
-    config = function ()
-      require("sidebar-nvim").setup({
-        sections = { "git", "diagnostics", "todos" },
-      })
+      require('gitsigns').setup()
     end
   },
   {
@@ -114,20 +114,24 @@ return {
       },
     },
   },
-  {
-    'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    config = true
-  },
+  -- NOTE: auto-pair plugins are not working well with blink.cmp signature help
+  -- {
+  --   'windwp/nvim-autopairs',
+  --   event = "InsertEnter",
+  --   config = true
+  -- },
   {
     'Wansmer/treesj',
-    keys = { '<space>m', '<space>j', '<space>s' },
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('treesj').setup({
         use_default_keymaps = false,
       })
     end,
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
   },
 
   -- lsp
@@ -142,12 +146,32 @@ return {
     dependencies = { 'saghen/blink.cmp' },
   },
   {
+    'nvimdev/lspsaga.nvim',
+    config = function()
+      require('lspsaga').setup({
+        outline = {
+          win_width = 40,
+          win_position = 'left',
+          detail = false,
+        },
+        lightbulb = {
+          virtual_text = false,
+        },
+      })
+    end,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    }
+  },
+  {
     'williamboman/mason-lspconfig.nvim',
     config = function()
       require('mason-lspconfig').setup({
         ensure_installed = {
           'lua_ls',
-          'biome',
+          'ruby_lsp',
+          'ts_ls',
         }
       })
       local capabilities = require('blink.cmp').get_lsp_capabilities()
@@ -161,9 +185,25 @@ return {
     end
   },
   {
+    'kristijanhusak/vim-dadbod-ui',
+    dependencies = {
+      { 'tpope/vim-dadbod',                     lazy = true },
+      { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+    },
+    cmd = {
+      'DBUI',
+      'DBUIToggle',
+      'DBUIAddConnection',
+      'DBUIFindBuffer',
+    },
+    init = function()
+      -- Your DBUI configuration
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
+  },
+  {
     'saghen/blink.cmp',
     dependencies = 'rafamadriz/friendly-snippets',
-
     version = '*',
     opts = {
       keymap = { preset = 'default' },
@@ -171,26 +211,61 @@ return {
         nerd_font_variant = 'mono'
       },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'dadbod' },
+        providers = {
+          dadbod = {
+            name = "Dadbod",
+            module = "vim_dadbod_completion.blink",
+          },
+        },
+      },
+      completion = {
+        accept = {
+          auto_brackets = {
+            enabled = true,
+          },
+        },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 0,
+        },
+      },
+      signature = {
+        enabled = true
       },
     },
-    opts_extend = { "sources.default" }
   },
   {
-    "ray-x/lsp_signature.nvim",
-    event = "VeryLazy",
-    opts = {},
-    config = function(_, opts) require'lsp_signature'.setup(opts) end
-  },
-  {
-    'pechorin/any-jump.vim'
+    'nvimtools/none-ls.nvim',
+    config = function()
+      local mason_package = require("mason-core.package")
+      local mason_registry = require("mason-registry")
+      local null_ls = require("null-ls")
+
+      local null_sources = {}
+
+      for _, package in ipairs(mason_registry.get_installed_packages()) do
+        local package_categories = package.spec.categories[1]
+        if package_categories == mason_package.Cat.Formatter then
+          table.insert(null_sources, null_ls.builtins.formatting[package.name])
+        end
+        if package_categories == mason_package.Cat.Linter then
+          table.insert(null_sources, null_ls.builtins.diagnostics[package.name])
+        end
+      end
+
+      null_ls.setup({
+        sources = null_sources,
+      })
+    end
   },
 
   -- finder
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.8',
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.8',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function ()
+    config = function()
       require('telescope').setup({
         defaults = {
           layout_strategy = 'flex',
@@ -218,10 +293,57 @@ return {
       { "nvim-telescope/telescope-fzy-native.nvim" },
     },
   },
+  {
+    'kevinhwang91/nvim-hlslens',
+    config = function()
+      require('hlslens').setup()
+    end
+  },
+
+  -- debug
+  {
+    'kevinhwang91/nvim-bqf',
+  },
+  {
+    "folke/trouble.nvim",
+    opts = {
+      focus = true,
+    },
+    cmd = "Trouble",
+  },
 
   -- support
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',
+  },
+  {
+    "OXY2DEV/foldtext.nvim",
+    lazy = false
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    config = function()
+      require("copilot").setup({
+        suggestion = {
+          auto_trigger = true,
+        },
+      })
+    end
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+  {
+    "amitds1997/remote-nvim.nvim",
+    version = "*",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = true,
   },
 }
