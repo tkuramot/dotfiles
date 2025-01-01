@@ -18,13 +18,13 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      require('lualine').setup()
+      require('lualine').setup({})
     end
   },
   {
     "j-hui/fidget.nvim",
     config = function()
-      require('fidget').setup()
+      require('fidget').setup({})
     end
   },
   {
@@ -68,14 +68,12 @@ return {
   -- coding
   {
     'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup({
-        mappings = {
-          basic = false,
-          extra = false,
-        },
-      })
-    end
+    opts = {
+      mappings = {
+        basic = false,
+        extra = false,
+      },
+    },
   },
   {
     'nvim-treesitter/nvim-treesitter',
@@ -168,6 +166,7 @@ return {
     'williamboman/mason-lspconfig.nvim',
     config = function()
       require('mason-lspconfig').setup({
+        automatic_installation = true,
         ensure_installed = {
           'lua_ls',
           'ruby_lsp',
@@ -211,11 +210,32 @@ return {
         nerd_font_variant = 'mono'
       },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'dadbod' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'dadbod', 'lazydev' },
         providers = {
+          lsp = {
+            name = 'lsp',
+            module = 'blink.cmp.sources.lsp',
+            score_offset = 1000,
+          },
+          snippets = {
+            name = 'lsp',
+            module = 'blink.cmp.sources.snippets',
+            score_offset = 900,
+          },
+          buffer = {
+            name = 'buffer',
+            module = 'blink.cmp.sources.buffer',
+            score_offset = 800,
+          },
           dadbod = {
             name = "Dadbod",
             module = "vim_dadbod_completion.blink",
+            score_offset = 950,
+          },
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            score_offset = 100,
           },
         },
       },
@@ -313,6 +333,15 @@ return {
   },
 
   -- support
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',

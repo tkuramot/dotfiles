@@ -1,8 +1,9 @@
-local m = require('utils.mapping')
+local m = require('util.mapping')
 
 vim.g.mapleader = ' '
 
 -- general
+m.imap('jj', '<ESC>', { desc = 'Exit insert mode' })
 m.nmap('<LEADER>de', '<CMD>lua vim.diagnostic.open_float()<CR>', { desc = 'Open diagnostic float'})
 m.nmap('<LEADER>dn', '<CMD>lua vim.diagnostic.goto_next()<CR>', { desc = 'Move to next diagnostic'})
 m.nmap('<LEADER>dp', '<CMD>lua vim.diagnostic.goto_prev()<CR>', { desc = 'Move to previous diagnostic'})

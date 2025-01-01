@@ -1,8 +1,6 @@
 require ('base')
-require ('configs.mappings')
-
--- plugins
-require('configs.lazy')
+require ('config.mapping')
+require('config.lazy')
 
 -- restore cursor
 vim.api.nvim_create_autocmd("BufReadPost", {
