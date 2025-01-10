@@ -38,7 +38,11 @@ return {
       ---@diagnostic disable-next-line: missing-fields
       require("neotest").setup({
         adapters = {
-          require("neotest-rspec"),
+          require("neotest-rspec")
+        },
+        output_panel = {
+          enabled = true,
+          open = 'botright vsplit | vertical resize 50',
         },
       })
     end

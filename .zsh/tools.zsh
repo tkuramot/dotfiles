@@ -8,6 +8,9 @@ command -v starship &>/dev/null && eval "$(starship init zsh)"
 # zoxide
 command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
 
+# direnv
+command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
+
 # git-completion
 fpath=(~/.zsh $fpath)
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
