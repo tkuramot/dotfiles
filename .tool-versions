@@ -8,3 +8,4 @@ cmake 3.29.2
 rust 1.79.0
 golang 1.23.2
 direnv 2.35.0
+rye 0.43.0

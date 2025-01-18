@@ -53,5 +53,12 @@ m.nmap('<LEADER>ts', '<CMD>Neotest summary<CR>', { desc = 'Show test summary' })
 m.nmap('<LEADER>to', '<CMD>Neotest output-panel<CR>', { desc = 'Show test output' })
 
 -- trouble
-m.nmap("<LEADER>d", "<CMD>Trouble diagnostics toggle<cr>", { desc = "Toggle diagnostics" })
-m.nmap("<LEADER>D", "<CMD>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Toggle buffer diagnostics" })
+m.nmap("<LEADER>dg", "<CMD>Trouble diagnostics toggle<cr>", { desc = "Toggle workspace diagnostics" })
+m.nmap("<LEADER>dl", "<CMD>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Toggle buffer diagnostics" })
+
+-- dbui
+m.nmap("<LEADER>db", "<CMD>DBUIToggle<CR>", { desc = "Toggle DBUI" })
+
+-- diffview
+m.nmap("<LEADER>dvo", "<CMD>DiffviewFileHistory %<CR>", { desc = "Open diffview file history" })
+m.nmap("<LEADER>dvc", "<CMD>DiffviewClose<CR>", { desc = "Close diffview" })

@@ -322,7 +322,7 @@ return {
           detail = false,
         },
         lightbulb = {
-          virtual_text = false,
+          sign = false,
         },
       })
     end,
@@ -426,7 +426,14 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     config = function()
-      require('gitsigns').setup()
+      require('gitsigns').setup({
+        current_line_blame = true,
+        current_line_blame_opts = {
+          virt_text = true,
+          virt_text_pos = 'eol',
+          delay = 200,
+        },
+      })
     end
   },
 
@@ -445,6 +452,9 @@ return {
   },
 
   -- misc
+  {
+    'direnv/direnv.vim',
+  },
   {
     "shortcuts/no-neck-pain.nvim",
     version = "*",
