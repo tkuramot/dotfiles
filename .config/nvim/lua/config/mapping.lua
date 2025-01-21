@@ -5,6 +5,10 @@ vim.g.mapleader = ' '
 -- general
 m.imap('jj', '<ESC>', { desc = 'Exit insert mode' })
 m.nmap('<LEADER>fm', '<CMD>lua vim.lsp.buf.format()<CR>', { desc = 'Format file' })
+m.nmap('<LEADER>tn', '<CMD>tabnew<CR>', { desc = 'New tab' })
+m.nmap('<LEADER>tl', '<CMD>tabnext<CR>', { desc = 'Next tab' })
+m.nmap('<LEADER>th', '<CMD>tabprevious<CR>', { desc = 'Previous tab' })
+m.nmap('<LEADER>tc', '<CMD>tabclose<CR>', { desc = 'Close tab' })
 
 -- git
 m.nmap('<LEADER>g', '<CMD>LazyGit<CR>', { desc = 'Open lazygit' })
@@ -48,7 +52,7 @@ m.nmap('<LEADER>nt', '<CMD>NoNeckPain<CR>', { desc = 'Toggle NoNeckPain' })
 
 -- neotest
 m.nmap('<LEADER>tf', '<CMD>lua require("neotest").run.run(vim.fn.expand("%"))<CR>', { desc = 'Run test file' })
-m.nmap('<LEADER>tn', '<CMD>lua require("neotest").run.run()<CR>', { desc = 'Run test nearest' })
+m.nmap('<LEADER>tt', '<CMD>lua require("neotest").run.run()<CR>', { desc = 'Run test nearest' })
 m.nmap('<LEADER>ts', '<CMD>Neotest summary<CR>', { desc = 'Show test summary' })
 m.nmap('<LEADER>to', '<CMD>Neotest output-panel<CR>', { desc = 'Show test output' })
 
@@ -62,3 +66,9 @@ m.nmap("<LEADER>db", "<CMD>DBUIToggle<CR>", { desc = "Toggle DBUI" })
 -- diffview
 m.nmap("<LEADER>dvo", "<CMD>DiffviewFileHistory %<CR>", { desc = "Open diffview file history" })
 m.nmap("<LEADER>dvc", "<CMD>DiffviewClose<CR>", { desc = "Close diffview" })
+
+-- persistence
+m.nmap("<LEADER>qs", function () require('persistence').load() end, { desc = "Load session" })
+m.nmap("<LEADER>qS", function () require('persistence').select() end, { desc = "Select session" })
+m.nmap("<LEADER>qd", function () require('persistence').stop() end, { desc = "Stop persistence" })
+m.nmap("<LEADER>ql", function () require('persistence').load({ last = true }) end, { desc = "Load last session" })

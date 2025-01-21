@@ -247,7 +247,7 @@ return {
   -- completion
   {
     'saghen/blink.cmp',
-    dependencies = 'rafamadriz/friendly-snippets',
+    dependencies = { 'rafamadriz/friendly-snippets' },
     version = '*',
     opts = {
       keymap = { preset = 'default' },
@@ -410,14 +410,6 @@ return {
     end
   },
   {
-    'romgrk/barbar.nvim',
-    dependencies = {
-      'lewis6991/gitsigns.nvim',
-      'nvim-tree/nvim-web-devicons',
-    },
-    version = '^1.0.0',
-  },
-  {
     "j-hui/fidget.nvim",
     config = function()
       require('fidget').setup({})
@@ -453,6 +445,21 @@ return {
 
   -- misc
   {
+    'ThePrimeagen/harpoon',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('harpoon').setup()
+    end
+  },
+  {
+    'brenoprata10/nvim-highlight-colors',
+    config = function()
+      require('nvim-highlight-colors').setup({
+        enable_tailwind = true,
+      })
+    end
+  },
+  {
     'direnv/direnv.vim',
   },
   {
@@ -476,4 +483,11 @@ return {
     'stevearc/overseer.nvim',
     opts = {},
   },
+  {
+  "folke/persistence.nvim",
+  event = "BufReadPre", -- this will only start session saving when an actual file was opened
+  opts = {
+    -- add any custom options here
+  },
+}
 }
