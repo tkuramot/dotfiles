@@ -33,12 +33,14 @@ return {
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
       "olimorris/neotest-rspec",
+      "rouge8/neotest-rust",
     },
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require("neotest").setup({
         adapters = {
-          require("neotest-rspec")
+          require("neotest-rspec"),
+          require("neotest-rust")
         },
         output_panel = {
           enabled = true,
@@ -47,16 +49,17 @@ return {
       })
     end
   },
-  {
-    "rest-nvim/rest.nvim",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      opts = function(_, opts)
-        opts.ensure_installed = opts.ensure_installed or {}
-        table.insert(opts.ensure_installed, "http")
-      end,
-    }
-  },
+  -- {
+  --   "rest-nvim/rest.nvim",
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "nvim-neotest/nvim-nio",
+  --     opts = function(_, opts)
+  --       opts.ensure_installed = opts.ensure_installed or {}
+  --       table.insert(opts.ensure_installed, "http")
+  --     end,
+  --   }
+  -- },
 
   -- search
   {
@@ -339,6 +342,7 @@ return {
         ensure_installed = {
           'lua_ls',
           'ruby_lsp',
+          'rust_analyzer',
           'ts_ls',
           'typos_lsp',
         }
@@ -347,7 +351,20 @@ return {
       require('mason-lspconfig').setup_handlers {
         function(server_name)
           require('lspconfig')[server_name].setup {
-            capabilities = capabilities
+            capabilities = capabilities,
+            on_attach = function(_, bufnr)
+              vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+            end,
+          }
+
+          require('lspconfig').rust_analyzer.setup {
+            settings = {
+              ['rust-analyzer'] = {
+                checkOnSave = {
+                  command = 'clippy',
+                },
+              },
+            },
           }
         end,
       }
@@ -484,10 +501,10 @@ return {
     opts = {},
   },
   {
-  "folke/persistence.nvim",
-  event = "BufReadPre", -- this will only start session saving when an actual file was opened
-  opts = {
-    -- add any custom options here
-  },
-}
+    "folke/persistence.nvim",
+    event = "BufReadPre", -- this will only start session saving when an actual file was opened
+    opts = {
+      -- add any custom options here
+    },
+  }
 }

@@ -4,7 +4,7 @@
     dotfiles:
       - { src: "~/.dotfiles/.config/nvim", dest: "~/.config/nvim" }
       - { src: "~/.dotfiles/.config/starship.toml", dest: "~/.config/starship.toml" }
-      - { src: "~/.dotfiles/.config/wezterm", dest: "~/.config/wezterm" }
+      - { src: "~/.dotfiles/.config/ghostty", dest: "~/.config/ghostty" }
       - { src: "~/.dotfiles/.gitconfig", dest: "~/.gitconfig" }
       - { src: "~/.dotfiles/.tool-versions", dest: "~/.tool-versions" }
       - { src: "~/.dotfiles/.xprofile", dest: "~/.xprofile" }
