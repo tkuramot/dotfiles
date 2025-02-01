@@ -108,6 +108,11 @@ return {
     "folke/trouble.nvim",
     opts = {
       focus = true,
+      modes = {
+        symbols = {
+          win = { position = 'right', size = 0.25 },
+        },
+      },
     },
     cmd = "Trouble",
   },
@@ -147,15 +152,67 @@ return {
     lazy = false
   },
   {
-    "zbirenbaum/copilot.lua",
-    config = function()
-      require("copilot").setup({
-        suggestion = {
-          auto_trigger = true,
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    lazy = false,
+    version = false,
+    opts = {
+      highlights = {
+        diff = {
+          current = "ConflictCurrent",
+          incoming = "ConflictIncoming",
+        }
+      }
+    },
+    build = "make",
+    dependencies = {
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "echasnovski/mini.pick",         -- for file_selector provider mini.pick
+      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+      "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
+      "ibhagwan/fzf-lua",              -- for file_selector provider fzf
+      "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua",        -- for providers='copilot'
+      {
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+            -- required for Windows users
+            use_absolute_path = true,
+          },
         },
-      })
-    end
+      },
+      {
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { "markdown", "Avante" },
+          code = {
+            border = 'none',
+            disable_background = true
+          }
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
   },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   config = function()
+  --     require("copilot").setup({
+  --       suggestion = {
+  --         auto_trigger = true,
+  --       },
+  --     })
+  --   end
+  -- },
   {
     'numToStr/Comment.nvim',
     opts = {
@@ -241,6 +298,9 @@ return {
         'yaml',
       },
     },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
@@ -451,7 +511,15 @@ return {
     'maxmx03/solarized.nvim',
     lazy = false,
     priority = 1000,
-    opts = {},
+    opts = {
+      on_highlights = function(_, _)
+        local groups = {
+          ConflictCurrent = { bg = '#adeae5' },
+          ConflictIncoming = { bg = '#cee6f6' }
+        }
+        return groups
+      end
+    },
     config = function(_, opts)
       vim.o.termguicolors = true
       vim.o.background = 'light'

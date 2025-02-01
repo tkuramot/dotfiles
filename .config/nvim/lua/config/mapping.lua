@@ -59,6 +59,7 @@ m.nmap('<LEADER>to', '<CMD>Neotest output-panel<CR>', { desc = 'Show test output
 -- trouble
 m.nmap("<LEADER>dg", "<CMD>Trouble diagnostics toggle<cr>", { desc = "Toggle workspace diagnostics" })
 m.nmap("<LEADER>dl", "<CMD>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Toggle buffer diagnostics" })
+m.nmap("<LEADER>do", "<CMD>Trouble symbols toggle focus=false<CR>", { desc = "Toggle workspace symbols" })
 
 -- dbui
 m.nmap("<LEADER>db", "<CMD>DBUIToggle<CR>", { desc = "Toggle DBUI" })
