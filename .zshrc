@@ -19,6 +19,10 @@ if [ -f ~/.zsh/environment.zsh ]; then
   source ~/.zsh/environment.zsh
 fi
 
+if [ -f ~/.zsh/credentials.zsh ]; then
+  source ~/.zsh/credentials.zsh
+fi
+
 if [ -f ~/.zsh/functions.zsh ]; then
   source ~/.zsh/functions.zsh
 fi

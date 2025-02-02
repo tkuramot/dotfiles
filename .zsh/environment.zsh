@@ -18,7 +18,3 @@ if [ uname = "Linux" ]; then
 fi
 
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
-
-if [ -f ~/.zsh/credentials.zsh ]; then
-  source ~/.zsh/credentials.zsh
-fi
