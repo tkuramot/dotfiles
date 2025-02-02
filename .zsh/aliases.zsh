@@ -5,6 +5,8 @@ alias myip='curl -4 http://ifconfig.me; echo'
 alias g='git'
 alias gbd='git branch --merged | grep -v "\*" | grep -v "main" | grep -v "develop" | xargs -n 1 git branch -d'
 
+alias mkdir='mkdir -p'
+
 # cd
 alias d='cd ~/Documents/'
 alias ..2='cd ../..'

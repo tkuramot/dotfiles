@@ -1,6 +1,12 @@
 return {
   -- git
   {
+    "tkuramot/go-to-pr.nvim",
+    config = function()
+      require("go-to-pr").setup()
+    end
+  },
+  {
     "kdheepak/lazygit.nvim",
     lazy = true,
     cmd = {
@@ -202,6 +208,9 @@ return {
         ft = { "markdown", "Avante" },
       },
     },
+    config = function(_, opts)
+      require("avante").setup(opts)
+    end
   },
   -- {
   --   "zbirenbaum/copilot.lua",
@@ -400,11 +409,13 @@ return {
       require('mason-lspconfig').setup({
         automatic_installation = true,
         ensure_installed = {
+          'eslint',
           'lua_ls',
           'ruby_lsp',
           'rust_analyzer',
           'ts_ls',
           'typos_lsp',
+          'yamlls'
         }
       })
       local capabilities = require('blink.cmp').get_lsp_capabilities()

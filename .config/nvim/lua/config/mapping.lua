@@ -12,9 +12,11 @@ m.nmap('<LEADER>tc', '<CMD>tabclose<CR>', { desc = 'Close tab' })
 
 -- git
 m.nmap('<LEADER>g', '<CMD>LazyGit<CR>', { desc = 'Open lazygit' })
+m.nmap('<LEADER>pb', function() require("go-to-pr").blame_pr() end, { desc = 'Blame PR' })
+m.nmap('<LEADER>po', function() require("go-to-pr").open_pr() end, { desc = 'Open/Create PR' })
 
 -- copilot
-m.imap('<TAB>', '<CMD>lua require("copilot.suggestion").accept()<CR>', { desc = 'Accept copilot suggestion' })
+m.imap('<TAB>', function() require("copilot.suggestion").accept() end, { desc = 'Accept copilot suggestion' })
 
 -- lspsaga
 m.nmap('<LEADER>la', '<CMD>Lspsaga code_action<CR>', { desc = 'Code action' })
@@ -34,7 +36,7 @@ m.nmap('<LEADER>o', '<CMD>Oil<CR>', { desc = 'Browse file tree' })
 -- comment
 m.vmap('<LEADER>/', '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>',
   { desc = 'Toggle comment' })
-m.nmap('<LEADER>/', '<CMD>lua require("Comment.api").toggle.linewise()<CR>', { desc = 'Toggle comment' })
+m.nmap('<LEADER>/', function() require("Comment.api").toggle.linewise() end, { desc = 'Toggle comment' })
 
 -- barbar
 m.nmap('<LEADER>x', '<CMD>BufferClose<CR>', { desc = 'Close current buffer' })
@@ -45,14 +47,14 @@ m.nmap('<S-TAB>', '<CMD>BufferPrevious<CR>', { desc = 'Move to previous buffer' 
 m.nmap('[c', function() require("treesitter-context").go_to_context(vim.v.count1) end, { desc = 'Go to upward context' })
 
 -- treesj
-m.nmap('<LEADER>jt', '<cmd>lua require("treesj").toggle()<CR>', { desc = 'Toggle splitting and joining blocks' })
+m.nmap('<LEADER>jt', function() require("treesj").toggle() end, { desc = 'Toggle splitting and joining blocks' })
 
 -- no neck pain
 m.nmap('<LEADER>nt', '<CMD>NoNeckPain<CR>', { desc = 'Toggle NoNeckPain' })
 
 -- neotest
-m.nmap('<LEADER>tf', '<CMD>lua require("neotest").run.run(vim.fn.expand("%"))<CR>', { desc = 'Run test file' })
-m.nmap('<LEADER>tt', '<CMD>lua require("neotest").run.run()<CR>', { desc = 'Run test nearest' })
+m.nmap('<LEADER>tf', function() require("neotest").run.run(vim.fn.expand("%")) end, { desc = 'Run test file' })
+m.nmap('<LEADER>tt', function() require("neotest").run.run() end, { desc = 'Run test nearest' })
 m.nmap('<LEADER>ts', '<CMD>Neotest summary<CR>', { desc = 'Show test summary' })
 m.nmap('<LEADER>to', '<CMD>Neotest output-panel<CR>', { desc = 'Show test output' })
 
