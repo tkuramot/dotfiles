@@ -19,6 +19,8 @@ set showmatch
 set number
 set expandtab
 set autoindent
+set tabstop=2
+set shiftwidth=2
 
 " misc
 set laststatus=2
