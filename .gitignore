@@ -7,6 +7,8 @@
 !/.bin/
 !/.bin/**
 !/.config/
+!/.config/aerospace/
+!/.config/aerospace/**
 !/.config/nvim/
 !/.config/nvim/**
 !/.config/starship.toml
