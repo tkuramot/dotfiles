@@ -179,8 +179,7 @@ return {
       "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
       "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
       "ibhagwan/fzf-lua",              -- for file_selector provider fzf
-      "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua",        -- for providers='copilot'
+      "nvim-tree/nvim-web-devicons",
       {
         "HakonHarnes/img-clip.nvim",
         event = "VeryLazy",
@@ -212,16 +211,16 @@ return {
       require("avante").setup(opts)
     end
   },
-  -- {
-  --   "zbirenbaum/copilot.lua",
-  --   config = function()
-  --     require("copilot").setup({
-  --       suggestion = {
-  --         auto_trigger = true,
-  --       },
-  --     })
-  --   end
-  -- },
+  {
+    "zbirenbaum/copilot.lua",
+    config = function()
+      require("copilot").setup({
+        suggestion = {
+          auto_trigger = true,
+        },
+      })
+    end
+  },
   {
     'numToStr/Comment.nvim',
     opts = {
@@ -434,6 +433,24 @@ return {
                 checkOnSave = {
                   command = 'clippy',
                 },
+              },
+            },
+          }
+
+          require('lspconfig').pylsp.setup {
+            settings = {
+              pylsp = {
+                plugins = {
+                  pycodestyle = {
+                    ignore = {
+                      'E226', -- missing whitespace around arithmetic operator
+                      'E227', -- missing whitespace around bitwise or shift operator
+                      'E228', -- missing whitespace around modulo operator
+                      'E741', -- ambiguous variable name
+                    },
+                    maxLineLength = 100
+                  }
+                }
               },
             },
           }

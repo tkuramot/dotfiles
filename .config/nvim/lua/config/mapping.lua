@@ -9,6 +9,7 @@ m.nmap('<LEADER>tn', '<CMD>tabnew<CR>', { desc = 'New tab' })
 m.nmap('<LEADER>tl', '<CMD>tabnext<CR>', { desc = 'Next tab' })
 m.nmap('<LEADER>th', '<CMD>tabprevious<CR>', { desc = 'Previous tab' })
 m.nmap('<LEADER>tc', '<CMD>tabclose<CR>', { desc = 'Close tab' })
+m.nmap('<LEADER>dd', function() vim.diagnostic.open_float() end, { desc = 'Open diagnostic float' })
 
 -- git
 m.nmap('<LEADER>g', '<CMD>LazyGit<CR>', { desc = 'Open lazygit' })
@@ -23,7 +24,6 @@ m.nmap('<LEADER>la', '<CMD>Lspsaga code_action<CR>', { desc = 'Code action' })
 m.nmap('<LEADER>lD', '<CMD>Lspsaga hover_doc<CR>', { desc = 'Hover doc' })
 m.nmap('<LEADER>lf', '<CMD>Lspsaga finder<CR>', { desc = 'Lsp finder' })
 m.nmap('<LEADER>lr', '<CMD>Lspsaga rename<CR>', { desc = 'Rename' })
-m.nmap('<LEADER>ld', '<CMD>Lspsaga show_line_diagnostics<CR>', { desc = 'Show line diagnostics' })
 m.nmap('gd', '<CMD>Lspsaga goto_definition<CR>', { desc = 'Goto definition' })
 
 -- telescope
