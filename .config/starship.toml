@@ -3,6 +3,9 @@ scan_timeout = 50
 [aws]
 disabled = true
 
+[gcloud]
+disabled = true
+
 [character]
 success_symbol = '[➜](bold green) '
 error_symbol = '[✗](bold red) '
@@ -15,8 +18,24 @@ truncation_length = 100
 truncate_to_repo = false
 truncation_symbol = "…/"
 
-[docker_context]
-format = "via [$symbol]($style)"
-
 [git_branch]
-symbol = " "
+symbol = " "
+
+[hostname]
+disabled = true
+
+# language
+[docker_context]
+disabled = true
+
+[golang]
+disabled = true
+
+[package]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[ruby]
+disabled = true

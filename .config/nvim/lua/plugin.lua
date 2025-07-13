@@ -408,7 +408,6 @@ return {
       require('mason-lspconfig').setup({
         automatic_installation = true,
         ensure_installed = {
-          'eslint',
           'lua_ls',
           'ruby_lsp',
           'rust_analyzer',
@@ -462,12 +461,18 @@ return {
   -- formatter
   {
     'nvimtools/none-ls.nvim',
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
     config = function()
       local mason_package = require("mason-core.package")
       local mason_registry = require("mason-registry")
       local null_ls = require("null-ls")
 
-      local null_sources = {}
+      local null_sources = {
+        -- NOTE: suppress failed to load builtin eslint_d for method diagnostics warning
+        require("none-ls.diagnostics.eslint_d"),
+      }
 
       for _, package in ipairs(mason_registry.get_installed_packages()) do
         local package_categories = package.spec.categories[1]
@@ -475,7 +480,10 @@ return {
           table.insert(null_sources, null_ls.builtins.formatting[package.name])
         end
         if package_categories == mason_package.Cat.Linter then
-          table.insert(null_sources, null_ls.builtins.diagnostics[package.name])
+          -- NOTE: suppress failed to load builtin eslint_d for method diagnostics warning
+          if package.name ~= "eslint_d" then
+            table.insert(null_sources, null_ls.builtins.diagnostics[package.name])
+          end
         end
       end
 
