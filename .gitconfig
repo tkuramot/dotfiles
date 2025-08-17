@@ -47,3 +47,6 @@
 [user]
 	name = tkuramot
 	email = mabdman512@gmail.com
+
+[url "ssh://git@github.com"]
+  insteadOf = https://github.com
