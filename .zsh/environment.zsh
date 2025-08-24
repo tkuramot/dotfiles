@@ -10,6 +10,7 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 export PATH=~/.asdf/shims/:~/bin/:$PATH
+export PATH=~/.local/share/mise/installs/:~/bin/:$PATH
 export PATH=$PATH:~/.local/bin/
 
 if [ uname = "Linux" ]; then
