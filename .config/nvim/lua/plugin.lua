@@ -23,7 +23,14 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     config = function()
-      require('gitsigns').setup()
+      require('gitsigns').setup({
+        current_line_blame = true,
+        current_line_blame_opts = {
+          virt_text = true,
+          virt_text_pos = 'eol',
+          delay = 200,
+        },
+      })
     end
   },
   {
@@ -31,30 +38,30 @@ return {
   },
 
   -- test
-  {
-    "nvim-neotest/neotest",
-    dependencies = {
-      "nvim-neotest/nvim-nio",
-      "nvim-lua/plenary.nvim",
-      "antoinemadec/FixCursorHold.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "olimorris/neotest-rspec",
-      "rouge8/neotest-rust",
-    },
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require("neotest").setup({
-        adapters = {
-          require("neotest-rspec"),
-          require("neotest-rust")
-        },
-        output_panel = {
-          enabled = true,
-          open = 'botright vsplit | vertical resize 50',
-        },
-      })
-    end
-  },
+  -- {
+  --   "nvim-neotest/neotest",
+  --   dependencies = {
+  --     "nvim-neotest/nvim-nio",
+  --     "nvim-lua/plenary.nvim",
+  --     "antoinemadec/FixCursorHold.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "olimorris/neotest-rspec",
+  --     "rouge8/neotest-rust",
+  --   },
+  --   config = function()
+  --     ---@diagnostic disable-next-line: missing-fields
+  --     require("neotest").setup({
+  --       adapters = {
+  --         require("neotest-rspec"),
+  --         require("neotest-rust")
+  --       },
+  --       output_panel = {
+  --         enabled = true,
+  --         open = 'botright vsplit | vertical resize 50',
+  --       },
+  --     })
+  --   end
+  -- },
   -- {
   --   "rest-nvim/rest.nvim",
   --   dependencies = {
@@ -157,60 +164,60 @@ return {
     "OXY2DEV/foldtext.nvim",
     lazy = false
   },
-  {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = false,
-    version = false,
-    opts = {
-      highlights = {
-        diff = {
-          current = "ConflictCurrent",
-          incoming = "ConflictIncoming",
-        }
-      }
-    },
-    build = "make",
-    dependencies = {
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      "echasnovski/mini.pick",         -- for file_selector provider mini.pick
-      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-      "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
-      "ibhagwan/fzf-lua",              -- for file_selector provider fzf
-      "nvim-tree/nvim-web-devicons",
-      {
-        "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
-        opts = {
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- required for Windows users
-            use_absolute_path = true,
-          },
-        },
-      },
-      {
-        'MeanderingProgrammer/render-markdown.nvim',
-        opts = {
-          file_types = { "markdown", "Avante" },
-          code = {
-            border = 'none',
-            disable_background = true
-          }
-        },
-        ft = { "markdown", "Avante" },
-      },
-    },
-    config = function(_, opts)
-      require("avante").setup(opts)
-    end
-  },
+  -- {
+  --   "yetone/avante.nvim",
+  --   event = "VeryLazy",
+  --   lazy = false,
+  --   version = false,
+  --   opts = {
+  --     highlights = {
+  --       diff = {
+  --         current = "ConflictCurrent",
+  --         incoming = "ConflictIncoming",
+  --       }
+  --     }
+  --   },
+  --   build = "make",
+  --   dependencies = {
+  --     "stevearc/dressing.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "MunifTanjim/nui.nvim",
+  --     "echasnovski/mini.pick",         -- for file_selector provider mini.pick
+  --     "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+  --     "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
+  --     "ibhagwan/fzf-lua",              -- for file_selector provider fzf
+  --     "nvim-tree/nvim-web-devicons",
+  --     {
+  --       "HakonHarnes/img-clip.nvim",
+  --       event = "VeryLazy",
+  --       opts = {
+  --         default = {
+  --           embed_image_as_base64 = false,
+  --           prompt_for_file_name = false,
+  --           drag_and_drop = {
+  --             insert_mode = true,
+  --           },
+  --           -- required for Windows users
+  --           use_absolute_path = true,
+  --         },
+  --       },
+  --     },
+  --     {
+  --       'MeanderingProgrammer/render-markdown.nvim',
+  --       opts = {
+  --         file_types = { "markdown", "Avante" },
+  --         code = {
+  --           border = 'none',
+  --           disable_background = true
+  --         }
+  --       },
+  --       ft = { "markdown", "Avante" },
+  --     },
+  --   },
+  --   config = function(_, opts)
+  --     require("avante").setup(opts)
+  --   end
+  -- },
   {
     "zbirenbaum/copilot.lua",
     config = function()
@@ -516,29 +523,9 @@ return {
     end
   },
   {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      require('lualine').setup({})
-    end
-  },
-  {
     "j-hui/fidget.nvim",
     config = function()
       require('fidget').setup({})
-    end
-  },
-  {
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup({
-        current_line_blame = true,
-        current_line_blame_opts = {
-          virt_text = true,
-          virt_text_pos = 'eol',
-          delay = 200,
-        },
-      })
     end
   },
 
