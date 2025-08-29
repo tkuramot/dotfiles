@@ -4,6 +4,7 @@ vim.g.mapleader = ' '
 
 -- general
 m.imap('jj', '<ESC>', { desc = 'Exit insert mode' })
+m.tmap('jj', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
 m.nmap('<LEADER>fm', '<CMD>lua vim.lsp.buf.format()<CR>', { desc = 'Format file' })
 m.nmap('<LEADER>tn', '<CMD>tabnew<CR>', { desc = 'New tab' })
 m.nmap('<LEADER>tl', '<CMD>tabnext<CR>', { desc = 'Next tab' })
@@ -60,15 +61,6 @@ m.nmap('[c', function() require("treesitter-context").go_to_context(vim.v.count1
 
 -- treesj
 m.nmap('<LEADER>jt', function() require("treesj").toggle() end, { desc = 'Toggle splitting and joining blocks' })
-
--- no neck pain
-m.nmap('<LEADER>nt', '<CMD>NoNeckPain<CR>', { desc = 'Toggle NoNeckPain' })
-
--- neotest
-m.nmap('<LEADER>tf', function() require("neotest").run.run(vim.fn.expand("%")) end, { desc = 'Run test file' })
-m.nmap('<LEADER>tt', function() require("neotest").run.run() end, { desc = 'Run test nearest' })
-m.nmap('<LEADER>ts', '<CMD>Neotest summary<CR>', { desc = 'Show test summary' })
-m.nmap('<LEADER>to', '<CMD>Neotest output-panel<CR>', { desc = 'Show test output' })
 
 -- trouble
 m.nmap("<LEADER>dg", "<CMD>Trouble diagnostics toggle<cr>", { desc = "Toggle workspace diagnostics" })

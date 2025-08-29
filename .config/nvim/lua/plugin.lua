@@ -446,7 +446,7 @@ return {
 
       local null_sources = {
         -- NOTE: suppress failed to load builtin eslint_d for method diagnostics warning
-        require("none-ls.diagnostics.eslint_d"),
+        -- require("none-ls.diagnostics.eslint_d"),
       }
 
       for _, package in ipairs(mason_registry.get_installed_packages()) do
