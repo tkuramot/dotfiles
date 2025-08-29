@@ -17,7 +17,19 @@ m.nmap('<LEADER>pb', function() require("go-to-pr").blame_pr() end, { desc = 'Bl
 m.nmap('<LEADER>po', function() require("go-to-pr").open_pr() end, { desc = 'Open/Create PR' })
 
 -- copilot
-m.imap('<TAB>', function() require("copilot.suggestion").accept() end, { desc = 'Accept copilot suggestion' })
+m.imap('<S-TAB>', function() require("copilot.suggestion").accept() end, { desc = 'Accept copilot suggestion' })
+
+-- claudecode
+m.nmap('<LEADER>ac', '<CMD>ClaudeCode<CR>', { desc = 'Toggle Claude' })
+m.nmap('<LEADER>af', '<CMD>ClaudeCodeFocus<CR>', { desc = 'Focus Claude' })
+m.nmap('<LEADER>ar', '<CMD>ClaudeCode --resume<CR>', { desc = 'Resume Claude' })
+m.nmap('<LEADER>aC', '<CMD>ClaudeCode --continue<CR>', { desc = 'Continue Claude' })
+m.nmap('<LEADER>am', '<CMD>ClaudeCodeSelectModel<CR>', { desc = 'Select Claude Model' })
+m.nmap('<LEADER>ab', '<CMD>ClaudeCodeAdd %<CR>', { desc = 'Add current buffer' })
+m.vmap('<LEADER>as', '<CMD>ClaudeCodeSend<CR>', { desc = 'Send to buffer' })
+m.nmap('<LEADER>aa', '<CMD>ClaudeCodeDiffAccept<CR>', { desc = 'Accept diff' })
+m.nmap('<LEADER>ad', '<CMD>ClaudeCodeDiffDeny<CR>', { desc = 'Deny diff' })
+m.nmap('<LEADER>as', '<CMD>ClaudeCodeTreeAdd<CR>', { desc = 'Add files' }, { ft = { 'oil' } })
 
 -- lspsaga
 m.nmap('<LEADER>la', '<CMD>Lspsaga code_action<CR>', { desc = 'Code action' })

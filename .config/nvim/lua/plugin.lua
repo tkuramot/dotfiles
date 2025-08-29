@@ -219,6 +219,11 @@ return {
   --   end
   -- },
   {
+    "coder/claudecode.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    config = true,
+  },
+  {
     "zbirenbaum/copilot.lua",
     config = function()
       require("copilot").setup({
@@ -326,7 +331,7 @@ return {
   {
     'saghen/blink.cmp',
     dependencies = { 'rafamadriz/friendly-snippets' },
-    version = '*',
+    version = '1.6.0',
     opts = {
       keymap = { preset = 'default' },
       appearance = {
@@ -381,7 +386,7 @@ return {
 
   -- lsp
   {
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
     config = function()
       require('mason').setup()
     end
@@ -410,10 +415,11 @@ return {
     }
   },
   {
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason-lspconfig.nvim',
     config = function()
       require('mason-lspconfig').setup({
-        automatic_installation = true,
+        automatic_installation = false,
+        automatic_enable = true,
         ensure_installed = {
           'lua_ls',
           'ruby_lsp',
@@ -423,45 +429,7 @@ return {
           'yamlls'
         }
       })
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
-      require('mason-lspconfig').setup_handlers {
-        function(server_name)
-          require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = function(_, bufnr)
-              vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-            end,
-          }
-
-          require('lspconfig').rust_analyzer.setup {
-            settings = {
-              ['rust-analyzer'] = {
-                checkOnSave = {
-                  command = 'clippy',
-                },
-              },
-            },
-          }
-
-          require('lspconfig').pylsp.setup {
-            settings = {
-              pylsp = {
-                plugins = {
-                  pycodestyle = {
-                    ignore = {
-                      'E226', -- missing whitespace around arithmetic operator
-                      'E227', -- missing whitespace around bitwise or shift operator
-                      'E228', -- missing whitespace around modulo operator
-                      'E741', -- ambiguous variable name
-                    },
-                    maxLineLength = 100
-                  }
-                }
-              },
-            },
-          }
-        end,
-      }
+      require('mason-lspconfig').setup()
     end
   },
 
@@ -514,7 +482,7 @@ return {
       'lewis6991/gitsigns.nvim',
       'nvim-tree/nvim-web-devicons',
     },
-    version = '^1.0.0',
+    version = '1.9.1',
   },
   {
     "j-hui/fidget.nvim",
