@@ -539,10 +539,6 @@ return {
     'direnv/direnv.vim',
   },
   {
-    "shortcuts/no-neck-pain.nvim",
-    version = "*",
-  },
-  {
     "folke/lazydev.nvim",
     ft = "lua",
     opts = {
