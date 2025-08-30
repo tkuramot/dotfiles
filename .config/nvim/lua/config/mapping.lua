@@ -3,8 +3,8 @@ local m = require('util.mapping')
 vim.g.mapleader = ' '
 
 -- general
-m.imap('jj', '<ESC>', { desc = 'Exit insert mode' })
-m.tmap('jj', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
+m.imap('<C-W><C-W>', '<ESC>', { desc = 'Exit insert mode' })
+m.tmap('<C-W><C-W>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
 m.nmap('<LEADER>fm', '<CMD>lua vim.lsp.buf.format()<CR>', { desc = 'Format file' })
 m.nmap('<LEADER>tn', '<CMD>tabnew<CR>', { desc = 'New tab' })
 m.nmap('<LEADER>tl', '<CMD>tabnext<CR>', { desc = 'Next tab' })
@@ -75,7 +75,7 @@ m.nmap("<LEADER>dvo", "<CMD>DiffviewFileHistory %<CR>", { desc = "Open diffview 
 m.nmap("<LEADER>dvc", "<CMD>DiffviewClose<CR>", { desc = "Close diffview" })
 
 -- persistence
-m.nmap("<LEADER>qs", function () require('persistence').load() end, { desc = "Load session" })
-m.nmap("<LEADER>qS", function () require('persistence').select() end, { desc = "Select session" })
-m.nmap("<LEADER>qd", function () require('persistence').stop() end, { desc = "Stop persistence" })
-m.nmap("<LEADER>ql", function () require('persistence').load({ last = true }) end, { desc = "Load last session" })
+m.nmap("<LEADER>qs", function() require('persistence').load() end, { desc = "Load session" })
+m.nmap("<LEADER>qS", function() require('persistence').select() end, { desc = "Select session" })
+m.nmap("<LEADER>qd", function() require('persistence').stop() end, { desc = "Stop persistence" })
+m.nmap("<LEADER>ql", function() require('persistence').load({ last = true }) end, { desc = "Load last session" })
