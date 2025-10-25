@@ -16,6 +16,8 @@
 !/.config/wezterm/**
 !/.config/ghostty/
 !/.config/ghostty/**
+!/.config/xournalpp
+!/.config/xournalpp/**
 !/.default-npm-packages
 !/.gitconfig
 !/.github/
@@ -35,5 +37,6 @@
 !/ansible/
 !/ansible/**
 /.config/nvim/lazy-lock.json
+/.config/xournalpp/metadata
 
 .DS_Store
