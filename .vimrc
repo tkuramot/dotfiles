@@ -5,7 +5,6 @@ autocmd BufWritePost * if &binary | execute '%!xxd' | endif
 
 " theme https://github.com/lifepillar/vim-solarized8
 set background=light
-colorscheme solarized8_flat
 
 " search
 set hlsearch
