@@ -21,4 +21,4 @@ zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 # lazy loading
 autoload -Uz compinit && compinit
 
-eval "$(~/.local/bin/mise activate zsh)"
+command -v mise &>/dev/null && eval "$(~/.local/bin/mise activate zsh)"
