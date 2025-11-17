@@ -13,6 +13,7 @@
 	s = status -s
 	sm = submodule
 	sw = switch
+	conflicts = '!git ls-files -u | cut -f 2 | sort -u'
 
 [color]
 	ui = auto
