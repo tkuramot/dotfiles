@@ -1,7 +1,6 @@
 # export LANG=C
 
 # zsh options
-setopt correct
 setopt auto_cd
 
 export LANG=en_US.UTF-8
