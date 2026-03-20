@@ -1,19 +1,14 @@
-# `git dft` is less to type than `git difftool`.
 [alias]
 	a = add
 	b = branch
 	c = commit
 	co = checkout
-	dft = difftool
+	conflicts = !git ls-files -u | cut -f 2 | sort -u
 	f = fetch
-	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-	lgd = log -p
-	lgs = log --stat
 	r = rebase
 	s = status -s
 	sm = submodule
 	sw = switch
-	conflicts = !git ls-files -u | cut -f 2 | sort -u
 
 [color]
 	ui = auto
@@ -22,14 +17,11 @@
 	editor = vim
 	ignorecase = false
 
-[diff]
-	external = difft
-
 [fetch]
 	prune = true
 
 [grep]
-	lineNumer = true
+	lineNumber = true
 
 [init]
 	defaultBranch = main
@@ -50,4 +42,4 @@
 	email = mabdman512@gmail.com
 
 [url "ssh://git@github.com"]
-  insteadOf = https://github.com
+	insteadOf = https://github.com
