@@ -9,6 +9,8 @@
 !/.config/
 !/.config/aerospace/
 !/.config/aerospace/**
+!/.config/gh/
+!/.config/gh/**
 !/.config/nvim/
 !/.config/nvim/**
 !/.config/starship.toml
