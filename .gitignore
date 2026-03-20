@@ -34,5 +34,6 @@
 !/ansible/**
 /.config/nvim/lazy-lock.json
 /.config/xournalpp/metadata
+/.config/xournalpp/settings.xml
 
 .DS_Store
