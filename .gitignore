@@ -1,11 +1,6 @@
 /*
 /.**
 
-!.tool-versions
-!/.bash_aliases
-!/.bashrc
-!/.bin/
-!/.bin/**
 !/.config/
 !/.config/aerospace/
 !/.config/aerospace/**
@@ -14,14 +9,11 @@
 !/.config/nvim/
 !/.config/nvim/**
 !/.config/starship.toml
+!/.config/tmux/
+!/.config/tmux/**
 !/.config/xournalpp
 !/.config/xournalpp/**
-!/.default-npm-packages
 !/.gitconfig
-!/.github/
-!/.github/**
-!/.github/workflows/
-!/.github/workflows/**
 !/.gitignore
 !/.vimrc
 !/.zshenv
@@ -32,8 +24,6 @@
 .config/zsh/.zshrc.local
 !/Makefile
 !/README.md
-!/ansible/
-!/ansible/**
 /.config/nvim/lazy-lock.json
 /.config/xournalpp/metadata
 /.config/xournalpp/settings.xml
