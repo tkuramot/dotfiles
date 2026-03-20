@@ -1,1 +1,9 @@
-setopt auto_cd
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
+setopt AUTO_CD
+setopt EXTENDED_GLOB
+setopt NO_BEEP
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt CORRECT
