@@ -1,0 +1,2 @@
+# keybindings
+# bindkey -v

@@ -1,6 +1,7 @@
+export LANG=en_US.UTF-8
 export EDITOR=vim
 
-# cololize man command
+# colorize man command
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
 export LESS_TERMCAP_me=$'\e[0m'
@@ -9,8 +10,7 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
-export PATH=~/.asdf/shims/:~/bin/:$PATH
-export PATH=~/.local/share/mise/installs/:~/bin/:$PATH
+export PATH=~/bin/:$PATH
 export PATH=$PATH:~/.local/bin/
 
 if [ uname = "Linux" ]; then
