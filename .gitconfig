@@ -34,9 +34,6 @@
 	default = current
 	autoSetupRemote = true
 
-[rebase]
-	autoStash = true
-
 [user]
 	name = tkuramot
 	email = mabdman512@gmail.com
