@@ -1,0 +1,30 @@
+[general]
+import = [
+  "~/.config/alacritty/themes/themes/solarized_light.toml"
+]
+
+[window]
+padding = { x = 8, y = 8 }
+dynamic_padding = true
+decorations = "Buttonless"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+size = 12.0
+
+[font.bold]
+style = "Bold"
+
+[font.italic]
+style = "Italic"
+
+[selection]
+save_to_clipboard = true
+
+[[keyboard.bindings]]
+key = "N"
+mods = "Command|Shift"
+action = "CreateNewWindow"

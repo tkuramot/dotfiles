@@ -4,6 +4,8 @@
 !/.config/
 !/.config/aerospace/
 !/.config/aerospace/**
+!/.config/alacritty/
+!/.config/alacritty/**
 !/.config/gh/
 !/.config/gh/**
 !/.config/nvim/
