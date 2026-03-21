@@ -33,6 +33,7 @@
 .config/zsh/.zshrc.local
 !/Makefile
 !/README.md
+!/CLAUDE.md
 /.config/nvim/lazy-lock.json
 /.config/xournalpp/metadata
 /.config/xournalpp/settings.xml
