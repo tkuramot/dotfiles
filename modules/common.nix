@@ -14,6 +14,8 @@ in {
     ./common/direnv.nix
   ];
 
+  home.file.".zshenv".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.zshenv";
+
   xdg.configFile = {
     "aerospace".source = link "aerospace";
     "nvim".source = link "nvim";

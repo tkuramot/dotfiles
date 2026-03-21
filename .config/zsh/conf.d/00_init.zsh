@@ -1,2 +1,1 @@
-# tmux 自動起動
-[[ -z "$TMUX" ]] && exec tmux new-session -A -s default
+[[ -z "$TMUX" ]] && tmux new-session -A -s default
