@@ -15,6 +15,7 @@ in {
   ];
 
   home.file.".zshenv".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.zshenv";
+  home.file.".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.gitconfig";
 
   xdg.configFile = {
     "aerospace".source = link "aerospace";
