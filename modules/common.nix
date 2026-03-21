@@ -11,6 +11,7 @@ in {
     ./common/gh.nix
     ./common/nix.nix
     ./common/vim.nix
+    ./common/direnv.nix
   ];
 
   xdg.configFile = {
