@@ -9,6 +9,6 @@
     system = "aarch64-darwin";
     username = "taisei-kuramoto";
     homeDirectory = "/Users/taisei-kuramoto";
-    extraModules = [ ./modules/colima.nix ];
+    extraModules = [ ./modules/optional/colima.nix ];
   };
 }

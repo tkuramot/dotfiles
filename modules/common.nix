@@ -4,12 +4,12 @@ let
   link = path: config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/${path}";
 in {
   imports = [
-    ./packages.nix
-    ./tmux.nix
-    ./alacritty.nix
-    ./starship.nix
-    ./gh.nix
-    ./nix.nix
+    ./common/packages.nix
+    ./common/tmux.nix
+    ./common/alacritty.nix
+    ./common/starship.nix
+    ./common/gh.nix
+    ./common/nix.nix
   ];
 
   xdg.configFile = {
