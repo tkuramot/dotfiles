@@ -8,8 +8,11 @@
 !/.config/alacritty/**
 !/.config/gh/
 !/.config/gh/**
-!/.config/home-manager/
-!/.config/home-manager/**
+!/flake.nix
+!/flake.lock
+!/profiles.nix
+!/modules/
+!/modules/**
 !/.config/nix/
 !/.config/nix/**
 !/.config/nvim/
