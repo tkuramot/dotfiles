@@ -37,4 +37,6 @@
 /.config/xournalpp/metadata
 /.config/xournalpp/settings.xml
 
+/.config/gh/hosts.yml
+
 .DS_Store
