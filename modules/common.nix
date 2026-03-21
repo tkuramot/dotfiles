@@ -4,6 +4,7 @@ let
   link = path: config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/${path}";
 in {
   imports = [
+    ./packages.nix
     ./tmux.nix
     ./alacritty.nix
     ./starship.nix

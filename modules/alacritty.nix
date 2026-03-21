@@ -1,12 +1,10 @@
-{ config, ... }:
-let
-  dotfilesDir = "${config.home.homeDirectory}/dotfiles/.config";
-in {
+{ pkgs, ... }:
+{
   programs.alacritty = {
     enable = true;
     settings = {
       general.import = [
-        "~/.config/alacritty/themes/themes/solarized_light.toml"
+        "${pkgs.alacritty-theme}/share/alacritty-theme/solarized_light.toml"
       ];
       window = {
         padding = { x = 8; y = 8; };
@@ -32,7 +30,4 @@ in {
       ];
     };
   };
-
-  xdg.configFile."alacritty/themes".source =
-    config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/alacritty/themes";
 }
