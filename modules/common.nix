@@ -10,6 +10,7 @@ in {
     ./common/starship.nix
     ./common/gh.nix
     ./common/nix.nix
+    ./common/vim.nix
   ];
 
   xdg.configFile = {
