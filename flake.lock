@@ -20,6 +20,26 @@
         "type": "github"
       }
     },
+    "muxrun": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1774109659,
+        "narHash": "sha256-ssddbDNxhN5Vlq2AimCDKnFBQFTl8gOllnkaAujVWZM=",
+        "owner": "tkuramot",
+        "repo": "muxrun",
+        "rev": "e0fa193ab478c777d40e6205f49afd475ceef8e1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tkuramot",
+        "repo": "muxrun",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1773821835,
@@ -39,6 +59,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "muxrun": "muxrun",
         "nixpkgs": "nixpkgs"
       }
     }

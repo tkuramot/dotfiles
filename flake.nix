@@ -6,13 +6,18 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    muxrun = {
+      url = "github:tkuramot/muxrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, muxrun, ... }:
   let
     profiles = import ./profiles.nix;
     mkHome = name: { system, username, homeDirectory, extraModules ? [] }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
+        extraSpecialArgs = { inherit muxrun; };
         modules = [
           ./modules/default.nix
           { home.username = username; home.homeDirectory = homeDirectory; }

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, muxrun, ... }:
 {
   home.packages = with pkgs; [
     zoxide
@@ -7,5 +7,6 @@
     jq
     fzf
     ghq
+    muxrun.packages.${pkgs.system}.default
   ];
 }
