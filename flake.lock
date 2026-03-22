@@ -27,11 +27,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774109659,
-        "narHash": "sha256-ssddbDNxhN5Vlq2AimCDKnFBQFTl8gOllnkaAujVWZM=",
+        "lastModified": 1774185944,
+        "narHash": "sha256-suWbNPlpc43Tr84BqeBq3fDFVSp3YI0OTI0DKlxDl44=",
         "owner": "tkuramot",
         "repo": "muxrun",
-        "rev": "e0fa193ab478c777d40e6205f49afd475ceef8e1",
+        "rev": "e59a095c9f8c4ab03d19012ed8185feb3c93e0c6",
         "type": "github"
       },
       "original": {
