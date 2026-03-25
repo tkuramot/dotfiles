@@ -2,7 +2,7 @@
 {
   programs.tmux = {
     enable = true;
-    prefix = "C-a";
+    prefix = "C-q";
     keyMode = "vi";
     baseIndex = 1;
     historyLimit = 10000;
