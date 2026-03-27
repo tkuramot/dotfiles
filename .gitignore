@@ -20,6 +20,7 @@
 !/.config/starship.toml
 !/.config/tmux/
 !/.config/tmux/**
+/.config/tmux/tmux.local.conf
 !/.config/xournalpp
 !/.config/xournalpp/**
 !/.gitconfig
