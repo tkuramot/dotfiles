@@ -25,3 +25,6 @@ set shiftwidth=2
 set laststatus=2
 set encoding=utf-8
 filetype plugin indent on
+
+set exrc
+set secure
