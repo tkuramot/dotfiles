@@ -9,8 +9,8 @@
     extraConfig = ''
       # panes
       set -wg pane-base-index 1
-      bind | split-window -h
-      bind - split-window -v
+      bind | split-window -h -c "#{pane_current_path}"
+      bind - split-window -v -c "#{pane_current_path}"
 
       bind h select-pane -L
       bind j select-pane -D
@@ -38,6 +38,8 @@
       set -g status-interval 1
       set -g status-right ""
       set -g default-terminal screen-256color
+
+      if-shell "test -f ~/.config/tmux/tmux.local.conf" "source-file ~/.config/tmux/tmux.local.conf"
     '';
   };
 }
