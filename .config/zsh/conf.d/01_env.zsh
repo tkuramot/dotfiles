@@ -12,6 +12,12 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac
+
+# Nix (multi-user daemon install) — restore after macOS/CLT updates wipe /etc/zshrc
 if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
   . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
