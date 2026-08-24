@@ -15,8 +15,8 @@
 !/modules/**
 !/.config/nix/
 !/.config/nix/**
-!/.config/nvim/
-!/.config/nvim/**
+!/.config/nvim-full/
+!/.config/nvim-full/**
 !/.config/starship.toml
 !/.config/tmux/
 !/.config/tmux/**
