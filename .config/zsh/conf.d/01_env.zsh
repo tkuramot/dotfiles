@@ -21,3 +21,11 @@ esac
 if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
   . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
+
+# nix-darwin (darwin-rebuild). programs.zsh.enable = false なので自前で通す
+if [ -d /run/current-system/sw/bin ]; then
+  case ":$PATH:" in
+    *":/run/current-system/sw/bin:"*) ;;
+    *) export PATH="/run/current-system/sw/bin:$PATH" ;;
+  esac
+fi
