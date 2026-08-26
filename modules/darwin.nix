@@ -3,13 +3,10 @@
   system.stateVersion = 6;
 
   # nix 本体は既存の multi-user インストールに任せる。
-  # nix.conf は .config/nix/nix.conf のシンボリックリンクが単一ソース。
   nix.enable = false;
 
-  # /etc/zshrc, /etc/zprofile, /etc/bashrc を nix-darwin に生成させない。
-  # 生成版は PATH を固定値で上書きするため path_helper 経由の
-  # /opt/homebrew/bin と /Library/TeX/texbin が PATH から落ちる。
-  # シェル設定の単一ソースは .config/zsh のまま。
+  # 生成される /etc/zshenv が PATH を固定値で上書きし、
+  # /opt/homebrew/bin と /Library/TeX/texbin が落ちるため off。
   programs.zsh.enable = false;
   programs.bash.enable = false;
 
@@ -49,7 +46,7 @@
       tilesize = 27;
       show-recents = false;
       mru-spaces = false; # AeroSpace: Space の自動並べ替えを止める
-      wvous-br-corner = 1; # 右下ホットコーナー(クイックメモ)を無効化
+      wvous-br-corner = 1; # 右下ホットコーナー無効
     };
 
     WindowManager.EnableStandardClickToShowDesktop = false;
