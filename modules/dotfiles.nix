@@ -13,10 +13,10 @@ in {
   xdg.configFile = {
     "aerospace".source = linkConfig "aerospace";
     "alacritty".source = linkConfig "alacritty";
+    "direnv".source = linkConfig "direnv";
     "gh".source = linkConfig "gh";
     "nvim".source = linkConfig "nvim";
     "tmux".source = linkConfig "tmux";
-    "xournalpp".source = linkConfig "xournalpp";
     "zsh".source = linkConfig "zsh";
     "nix/nix.conf".source = linkConfig "nix/nix.conf";
     "starship.toml".source = linkConfig "starship.toml";

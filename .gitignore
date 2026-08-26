@@ -6,6 +6,8 @@
 !/.config/aerospace/**
 !/.config/alacritty/
 !/.config/alacritty/**
+!/.config/direnv/
+!/.config/direnv/**
 !/.config/gh/
 !/.config/gh/**
 !/flake.nix
@@ -23,8 +25,6 @@
 !/.config/tmux/
 !/.config/tmux/**
 /.config/tmux/tmux.local.conf
-!/.config/xournalpp
-!/.config/xournalpp/**
 !/.gitconfig
 !/.gitignore
 !/.vimrc
@@ -38,8 +38,6 @@
 !/README.md
 !/CLAUDE.md
 /.config/nvim/lazy-lock.json
-/.config/xournalpp/metadata
-/.config/xournalpp/settings.xml
 
 /.config/gh/hosts.yml
 

@@ -11,6 +11,8 @@
     jq
     fzf
     ghq
+    direnv
+    nix-direnv
     vim
   ];
 }
