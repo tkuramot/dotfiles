@@ -1,7 +1,7 @@
 .PHONY: switch build
 
 switch:
-	home-manager switch --flake .#$(PROFILE)
+	home-manager switch --flake .#default
 
 build:
-	home-manager build --flake .#$(PROFILE)
+	home-manager build --flake .#default
