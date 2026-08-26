@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    alacritty
     tmux
     starship
     gh
@@ -14,5 +13,7 @@
     direnv
     nix-direnv
     vim
+    neovim
+    wget
   ];
 }
