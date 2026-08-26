@@ -1,13 +1,16 @@
-{ pkgs, muxrun, mcp-server-pdf, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
+    alacritty
+    tmux
+    starship
+    gh
     zoxide
     tree
     ripgrep
     jq
     fzf
     ghq
-    muxrun.packages.${pkgs.system}.default
-    mcp-server-pdf.packages.${pkgs.system}.default
+    vim
   ];
 }

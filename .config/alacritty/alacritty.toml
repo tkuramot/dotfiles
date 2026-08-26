@@ -1,6 +1,6 @@
 [general]
 import = [
-  "~/.config/alacritty/themes/themes/solarized_light.toml"
+  "~/.config/alacritty/themes/solarized_light.toml"
 ]
 
 [window]
