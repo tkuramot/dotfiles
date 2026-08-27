@@ -15,7 +15,10 @@
     onActivation.cleanup = "none";
     casks = [
       "aerospace"
-      "alacritty"
+      {
+        name = "alacritty";
+        args.no_quarantine = true;
+      }
     ];
   };
 
