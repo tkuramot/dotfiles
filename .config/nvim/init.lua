@@ -67,6 +67,9 @@ if vim.fn.executable("rg") == 1 then
   opt.grepprg = "rg --vimgrep --smart-case"
 end
 
+-- netrw
+vim.g.netrw_liststyle = 3
+
 -- Diagnostics
 vim.diagnostic.config({
   severity_sort = true,
@@ -104,16 +107,19 @@ vim.lsp.config("gopls", {
     },
   },
 })
+
 vim.lsp.config("clangd", {
   cmd = { "clangd", "--background-index", "--clang-tidy" },
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
   root_markers = { "compile_commands.json", "compile_flags.txt", ".clangd", ".clang-format", ".git" },
 })
+
 vim.lsp.config("tsc", {
   cmd = { "tsc", "--lsp", "--stdio" },
   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
   root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
 })
+
 vim.lsp.enable({ "lua_ls", "gopls", "clangd", "tsc" })
 vim.lsp.codelens.enable(true)
 
