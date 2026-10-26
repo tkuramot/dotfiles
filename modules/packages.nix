@@ -19,6 +19,7 @@
     gopls
     clang-tools
     bear
+    typescript
     wget
   ];
 }
