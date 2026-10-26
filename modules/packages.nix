@@ -14,6 +14,9 @@
     nix-direnv
     vim
     neovim
+    lua-language-server
+    go
+    gopls
     wget
   ];
 }
