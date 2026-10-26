@@ -17,6 +17,8 @@
     lua-language-server
     go
     gopls
+    clang-tools
+    bear
     wget
   ];
 }

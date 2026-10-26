@@ -16,7 +16,7 @@ opt.scrolloff = 8
 opt.wrap = false
 opt.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-opt.foldlevel = 99  -- open all folds by default
+opt.foldlevel = 99 -- open all folds by default
 
 -- Indent
 opt.expandtab = true
@@ -37,7 +37,7 @@ opt.completeopt = { "menuone", "noselect", "popup" }
 
 -- Keymaps
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
-map("t", "<Esc><Esc>", [[<C-\><C-n>]])  -- exit terminal mode
+map("t", "<Esc><Esc>", [[<C-\><C-n>]]) -- exit terminal mode
 map("i", "jj", "<Esc>")
 
 -- :find and :grep via rg
@@ -46,6 +46,7 @@ if vim.fn.executable("rg") == 1 then
     local files = vim.fn.systemlist({ "rg", "--files", "--hidden", "--glob", "!.git" })
     return query == "" and files or vim.fn.matchfuzzy(files, query)
   end
+
   opt.findfunc = "v:lua.RgFindFiles"
   opt.grepprg = "rg --vimgrep --smart-case"
 end
@@ -67,7 +68,7 @@ vim.lsp.config("lua_ls", {
       runtime = { version = "LuaJIT" },
       workspace = {
         checkThirdParty = false,
-        library = { vim.env.VIMRUNTIME },  -- recognize `vim` and its API
+        library = { vim.env.VIMRUNTIME }, -- recognize `vim` and its API
       },
     },
   },
@@ -87,7 +88,12 @@ vim.lsp.config("gopls", {
     },
   },
 })
-vim.lsp.enable({ "lua_ls", "gopls" })
+vim.lsp.config("clangd", {
+  cmd = { "clangd", "--background-index", "--clang-tidy" },
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+  root_markers = { "compile_commands.json", "compile_flags.txt", ".clangd", ".clang-format", ".git" },
+})
+vim.lsp.enable({ "lua_ls", "gopls", "clangd" })
 vim.lsp.codelens.enable(true)
 
 autocmd("LspAttach", {
