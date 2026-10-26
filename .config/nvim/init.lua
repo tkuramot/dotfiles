@@ -100,6 +100,7 @@ vim.lsp.config("gopls", {
   settings = {
     gopls = {
       gofumpt = true,
+      semanticTokens = true,
       staticcheck = true,
       usePlaceholders = true,
       analyses = { unusedparams = true },
