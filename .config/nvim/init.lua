@@ -6,7 +6,23 @@ local augroup = function(name) return vim.api.nvim_create_augroup(name, { clear 
 vim.g.mapleader = " "
 
 -- UI
-vim.cmd.colorscheme('retrobox')
+-- retrobox is a Vim colorscheme and leaves Nvim-only groups at generic defaults
+-- (unreadable on light bg); derive them from its own palette instead.
+autocmd("ColorScheme", {
+  group = augroup("my.colorscheme"),
+  pattern = "retrobox",
+  callback = function()
+    local fg = function(name) return vim.api.nvim_get_hl(0, { name = name, link = false }).fg end
+    local hl = function(name, val) vim.api.nvim_set_hl(0, name, val) end
+    hl("DiagnosticError", { fg = fg("Statement") })
+    hl("DiagnosticWarn", { fg = fg("Type") })
+    hl("DiagnosticInfo", { fg = fg("Identifier") })
+    hl("DiagnosticHint", { fg = fg("PreProc") })
+    hl("DiagnosticOk", { fg = fg("String") })
+    hl("LspInlayHint", { link = "Comment" })
+  end,
+})
+vim.cmd.colorscheme("retrobox")
 
 opt.number = true
 opt.relativenumber = true
