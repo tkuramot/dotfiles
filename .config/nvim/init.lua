@@ -33,6 +33,7 @@ opt.wrap = false
 opt.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 opt.foldlevel = 99 -- open all folds by default
+opt.foldtext = "" -- keep syntax highlighting
 
 -- Indent
 opt.expandtab = true
