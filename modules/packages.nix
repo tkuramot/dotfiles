@@ -20,6 +20,7 @@
     clang-tools
     bear
     typescript
+    watchman
     wget
   ];
 }

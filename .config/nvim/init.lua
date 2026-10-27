@@ -77,51 +77,8 @@ vim.diagnostic.config({
   float = { border = "rounded", source = true },
 })
 
--- LSP
-vim.lsp.config("lua_ls", {
-  cmd = { "lua-language-server" },
-  filetypes = { "lua" },
-  root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
-  settings = {
-    Lua = {
-      runtime = { version = "LuaJIT" },
-      workspace = {
-        checkThirdParty = false,
-        library = { vim.env.VIMRUNTIME }, -- recognize `vim` and its API
-      },
-    },
-  },
-})
-
-vim.lsp.config("gopls", {
-  cmd = { "gopls" },
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_markers = { "go.work", "go.mod", ".git" },
-  settings = {
-    gopls = {
-      gofumpt = true,
-      semanticTokens = true,
-      staticcheck = true,
-      usePlaceholders = true,
-      analyses = { unusedparams = true },
-      codelenses = { test = true },
-    },
-  },
-})
-
-vim.lsp.config("clangd", {
-  cmd = { "clangd", "--background-index", "--clang-tidy" },
-  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-  root_markers = { "compile_commands.json", "compile_flags.txt", ".clangd", ".clang-format", ".git" },
-})
-
-vim.lsp.config("tsc", {
-  cmd = { "tsc", "--lsp", "--stdio" },
-  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-  root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
-})
-
-vim.lsp.enable({ "lua_ls", "gopls", "clangd", "tsc" })
+-- LSP (server definitions live in lsp/<name>.lua)
+vim.lsp.enable({ "lua_ls", "gopls", "clangd", "tsc", "sorbet", "ruby_lsp" })
 vim.lsp.codelens.enable(true)
 
 autocmd("LspAttach", {
