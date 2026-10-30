@@ -29,8 +29,6 @@
 !/.zshenv
 !/.config/zsh/
 !/.config/zsh/.zshrc
-!/.config/zsh/conf.d/
-!/.config/zsh/conf.d/**
 .config/zsh/.zshrc.local
 !/Makefile
 !/README.md
