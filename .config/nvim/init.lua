@@ -120,5 +120,15 @@ autocmd("BufReadPost", {
   end,
 })
 
+autocmd("FileType", {
+  group = augroup("my.wrap_text"),
+  pattern = { "markdown", "text", "gitcommit" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    vim.opt_local.breakindent = true
+  end,
+})
+
 -- experimental
 require("vim._core.ui2").enable()
