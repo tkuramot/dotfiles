@@ -57,16 +57,24 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 map("t", "<Esc><Esc>", [[<C-\><C-n>]]) -- exit terminal mode
 map("i", "jj", "<Esc>")
 
--- :find and :grep via rg
-if vim.fn.executable("rg") == 1 then
-  function _G.RgFindFiles(query, _)
-    local files = vim.fn.systemlist({ "rg", "--files", "--hidden", "--glob", "!.git" })
-    return query == "" and files or vim.fn.matchfuzzy(files, query)
+-- :find and :grep via rg, falling back to git ls-files / find and grep
+function _G.FindFiles(query, _)
+  local cmds = {
+    { "rg", "--files", "--hidden", "--glob", "!.git" },
+    { "git", "ls-files", "-co", "--exclude-standard" },
+    { "find", ".", "-name", ".git", "-prune", "-o", "-type", "f", "-print" },
+  }
+  for _, cmd in ipairs(cmds) do
+    if vim.fn.executable(cmd[1]) == 1 then
+      local files = vim.fn.systemlist(cmd)
+      if vim.v.shell_error == 0 then return query == "" and files or vim.fn.matchfuzzy(files, query) end
+    end
   end
-
-  opt.findfunc = "v:lua.RgFindFiles"
-  opt.grepprg = "rg --vimgrep --smart-case"
+  return {}
 end
+
+opt.findfunc = "v:lua.FindFiles"
+opt.grepprg = vim.fn.executable("rg") == 1 and "rg --vimgrep --smart-case" or "grep -rnHI --exclude-dir=.git"
 
 -- netrw
 vim.g.netrw_liststyle = 3

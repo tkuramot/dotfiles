@@ -1,7 +1,10 @@
 -- Reuse the running client for stdlib / module cache files instead of spawning one per module
 -- see: https://github.com/neovim/nvim-lspconfig/issues/804
-local go_env = vim.fn.systemlist({ "go", "env", "GOROOT", "GOMODCACHE" })
-local external_dirs = vim.v.shell_error == 0 and { go_env[1] .. "/src", go_env[2] } or {}
+local external_dirs = {}
+if vim.fn.executable("go") == 1 then
+  local go_env = vim.fn.systemlist({ "go", "env", "GOROOT", "GOMODCACHE" })
+  if vim.v.shell_error == 0 then external_dirs = { go_env[1] .. "/src", go_env[2] } end
+end
 
 return {
   cmd = { "gopls" },
