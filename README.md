@@ -16,7 +16,7 @@ curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh
 git clone https://github.com/tkuramot/dotfiles ~/dotfiles && cd ~/dotfiles
 
 # Home Manager (first run only; use `make home-switch` afterwards)
-nix --extra-experimental-features 'nix-command flakes' run home-manager/master -- switch --flake .#macos -b backup
+NIX_CONFIG='experimental-features = nix-command flakes' nix run home-manager/master -- switch --flake .#macos -b backup
 
 # nix-darwin (first run only; use `make darwin-switch` afterwards)
 sudo nix --extra-experimental-features 'nix-command flakes' run nix-darwin/master#darwin-rebuild -- switch --flake .#macos
