@@ -31,13 +31,13 @@ This is a **Nix Flakes + Home Manager + nix-darwin** dotfiles repo for macOS (aa
 - macOS only: the `aerospace` link.
 - Linux only: `targets.genericLinux` with nixGL (from the `nixgl` flake input, passed via `extraSpecialArgs`); GPU apps are wrapped with `config.lib.nixGL.wrap` (alacritty; on macOS it is a Homebrew cask instead).
 
-Everything else on ParrotOS (base system, privileged security tools that ship with Parrot) stays with apt. Linux-only *module imports* cannot be gated on `pkgs` (infinite recursion); if one is ever needed, split a Linux-only file back out and select it in `mkHome` by system suffix.
+Everything else on ParrotOS (base system, privileged security tools that ship with Parrot) stays with apt. Linux-only *module imports* cannot be gated on `pkgs` (infinite recursion), so they are selected in `mkHome` by system suffix: on `-linux` profiles it adds the `plasma-manager` module and `modules/plasma.nix`.
 
 **Modules** — one file per layer (they are different module systems and cannot be merged):
 - `modules/home.nix` — the Home Manager layer: state version, `home.packages`, and the symlink table (`home.file` / `xdg.configFile`)
 - `modules/darwin.nix` — the nix-darwin (system) layer: Homebrew casks, `system.defaults`, Caps Lock remap
 
-**Single source of truth: `.config/`.** Nix owns *packages and symlinks only*; it never generates config text — there are no `programs.*` modules at all. Every config file lives as a real file in this repo (`.config/**`, `.zshenv`, `.gitconfig`, `.vimrc`) and is linked into `$HOME` with `config.lib.file.mkOutOfStoreSymlink`, so edits take effect immediately — `make home-switch` is only needed when adding a package or a new link.
+**Single source of truth: `.config/`.** Nix owns *packages and symlinks only*; it never generates config text — there are no `programs.*` modules, with one exception: `programs.plasma` (see below). Every config file lives as a real file in this repo (`.config/**`, `.zshenv`, `.gitconfig`, `.vimrc`) and is linked into `$HOME` with `config.lib.file.mkOutOfStoreSymlink`, so edits take effect immediately — `make home-switch` is only needed when adding a package or a new link.
 
 Do **not** reintroduce `programs.<tool>.settings` / `extraConfig` for a tool whose config lives in `.config/`: it would both shadow the real file and re-split the source of truth. Add the package to `home.packages` and a link to the symlink table in `modules/home.nix` instead.
 
@@ -64,5 +64,9 @@ Two options are set defensively and must not be flipped without understanding wh
 - **`programs.zsh.enable = false`** / **`programs.bash.enable = false`** — these generate `/etc/zshrc`, `/etc/zshenv`, `/etc/zprofile`, and `/etc/bashrc`. The generated `/etc/zprofile` drops the `path_helper` call, and the generated `/etc/zshenv` hard-sets `PATH` to a fixed list that does **not** contain `/opt/homebrew/bin` — so enabling them would knock every Homebrew binary (including the casks this layer installs) out of `PATH`. Shell config stays entirely in `.config/zsh`.
 
 Same rule as the Home Manager layer: nix-darwin manages *system state*, never config text for a tool whose config lives in `.config/`.
+
+## KDE Plasma (ParrotOS)
+
+`modules/plasma.nix` uses plasma-manager's `programs.plasma` — the deliberate exception to the no-`programs.*` rule. KDE rewrites its own rc files constantly (window geometry, recent files, per-screen IDs), so they cannot be symlinked from `.config/`; instead plasma-manager writes only the declared keys via `kwriteconfig` at activation, like `system.defaults` on the nix-darwin side. Keep `overrideConfig` off so undeclared keys stay with KDE, and do not link `kdeglobals`/`kwinrc`/`plasma-*rc` into `.config/`.
 
 **.gitignore** uses a strict whitelist strategy — everything is ignored by default, specific paths are explicitly allowed.
