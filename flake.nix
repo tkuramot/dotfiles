@@ -19,7 +19,7 @@
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
         modules = [
-          ./modules/default.nix
+          ./modules/home.nix
           { home.username = username; home.homeDirectory = homeDirectory; }
         ];
       };

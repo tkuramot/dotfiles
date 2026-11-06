@@ -1,9 +1,36 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   dotfilesDir = "${config.home.homeDirectory}/dotfiles";
   link = path: config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/${path}";
   linkConfig = path: link ".config/${path}";
 in {
+  home.stateVersion = "25.11";
+  programs.home-manager.enable = true;
+
+  home.packages = with pkgs; [
+    tmux
+    starship
+    gh
+    zoxide
+    tree
+    ripgrep
+    jq
+    fzf
+    ghq
+    direnv
+    nix-direnv
+    vim
+    neovim
+    lua-language-server
+    go
+    gopls
+    clang-tools
+    bear
+    typescript
+    watchman
+    wget
+  ];
+
   home.file = {
     ".zshenv".source = link ".zshenv";
     ".gitconfig".source = link ".gitconfig";
