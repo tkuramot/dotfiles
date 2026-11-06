@@ -4,6 +4,7 @@ let
   dotfilesDir = "${config.home.homeDirectory}/dotfiles";
   link = path: config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/${path}";
   linkConfig = path: link ".config/${path}";
+  alacrittyGL = config.lib.nixGL.wrap pkgs.alacritty;
 in {
   home.stateVersion = "25.11";
   programs.home-manager.enable = true;
@@ -31,8 +32,13 @@ in {
     watchman
     wget
   ] ++ lib.optionals isLinux [
-    (config.lib.nixGL.wrap alacritty)
+    alacrittyGL
   ];
+
+  # Plasma's session env drops XDG_DATA_DIRS from environment.d, so the menu never sees ~/.nix-profile/share
+  xdg.dataFile = lib.optionalAttrs isLinux {
+    "applications/Alacritty.desktop".source = "${alacrittyGL}/share/applications/Alacritty.desktop";
+  };
 
   targets.genericLinux = lib.mkIf isLinux {
     enable = true;
