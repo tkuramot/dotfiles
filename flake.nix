@@ -8,7 +8,7 @@
     };
     nix-darwin = {
       # nixpkgs の release と揃える
-      url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
+      url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

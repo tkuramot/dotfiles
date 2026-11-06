@@ -21,7 +21,7 @@ This is a **Nix Flakes + Home Manager + nix-darwin** dotfiles repo for macOS (aa
 
 **Flake structure:** `flake.nix` defines inputs (nixpkgs unstable, home-manager, nix-darwin) and builds both `homeConfigurations` and `darwinConfigurations` from the same profiles. `mkHome` wires each profile through `modules/default.nix`; `mkDarwin` wires it through `modules/darwin.nix`.
 
-**nix-darwin is pinned to a release branch** (`nix-darwin-26.05`) because it refuses to evaluate when its release string differs from the locked nixpkgs. `nixpkgs.url` is `nixos-unstable`, so after `nix flake update` bumps nixpkgs to a new release, the `nix-darwin` url must be bumped to the matching `nix-darwin-YY.MM` branch (or moved to `master` if nixpkgs lands on the same release as master).
+**nix-darwin tracks `master`** and refuses to evaluate when its release string differs from the locked nixpkgs. `nixpkgs.url` is `nixos-unstable`, so after `nix flake update` the two can drift apart; if they do, pin the `nix-darwin` url to the matching `nix-darwin-YY.MM` branch (or back to `master` once master matches nixpkgs again).
 
 **Profiles** (`profiles.nix`): Each entry maps a name to a system/user/home triple. Currently one profile:
 - `default` — username: kura
@@ -48,14 +48,15 @@ Adding a new tool: add the package to `modules/packages.nix`, drop its config un
 
 `modules/darwin.nix` owns only what lives above the user's home directory:
 
-- **`homebrew.casks`** — GUI apps (`aerospace`, `alacritty`). `onActivation.cleanup = "none"`, so casks not listed here are left alone rather than uninstalled. nix-darwin does not install Homebrew itself; it must already be present.
-- **`system.defaults`** — `defaults write` equivalents (key repeat, input auto-correction, Finder, Dock, hot corners). Some entries deliberately restate the value already set by hand, so the state is declared rather than implicit.
+- **`homebrew.casks`** — GUI apps (`aerospace`, `alacritty`, `virtualbox`, …). `onActivation.cleanup = "none"`, so casks not listed here are left alone rather than uninstalled. nix-darwin does not install Homebrew itself; it must already be present.
+- **`system.defaults`** — `defaults write` equivalents (key repeat, input auto-correction, Finder, Dock incl. `persistent-apps`, hot corners). Some entries deliberately restate the value already set by hand, so the state is declared rather than implicit.
 - **`system.keyboard`** — Caps Lock → Control.
+- **`security.pam.services.sudo_local.touchIdAuth`** — Touch ID for `sudo`.
 
 Two options are set defensively and must not be flipped without understanding why:
 
 - **`nix.enable = false`** — nix-darwin would otherwise take over the nix daemon and `/etc/nix`. The existing multi-user install manages the daemon, and `.config/nix/nix.conf` is the single source of truth for nix settings.
-- **`programs.zsh.enable = false`** / **`programs.bash.enable = false`** — these generate `/etc/zshrc`, `/etc/zshenv`, `/etc/zprofile`, and `/etc/bashrc`. The generated `/etc/zprofile` drops the `path_helper` call, and the generated `/etc/zshenv` hard-sets `PATH` to a fixed list that contains **neither `/opt/homebrew/bin` nor `/Library/TeX/texbin`** — so enabling them would knock every Homebrew binary (including the casks this layer installs) out of `PATH`. Shell config stays entirely in `.config/zsh`.
+- **`programs.zsh.enable = false`** / **`programs.bash.enable = false`** — these generate `/etc/zshrc`, `/etc/zshenv`, `/etc/zprofile`, and `/etc/bashrc`. The generated `/etc/zprofile` drops the `path_helper` call, and the generated `/etc/zshenv` hard-sets `PATH` to a fixed list that does **not** contain `/opt/homebrew/bin` — so enabling them would knock every Homebrew binary (including the casks this layer installs) out of `PATH`. Shell config stays entirely in `.config/zsh`.
 
 Same rule as the Home Manager layer: nix-darwin manages *system state*, never config text for a tool whose config lives in `.config/`.
 
