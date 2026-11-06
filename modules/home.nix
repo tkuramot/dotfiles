@@ -56,5 +56,7 @@ in {
     "starship.toml".source = linkConfig "starship.toml";
   } // lib.optionalAttrs isDarwin {
     "aerospace".source = linkConfig "aerospace";
+  } // lib.optionalAttrs isLinux {
+    "plasma-workspace/env/nix.sh".source = linkConfig "plasma-workspace/env/nix.sh";
   };
 }

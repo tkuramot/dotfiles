@@ -17,6 +17,9 @@
 !/modules/**
 !/.config/nix/
 !/.config/nix/**
+!/.config/plasma-workspace/
+!/.config/plasma-workspace/env/
+!/.config/plasma-workspace/env/nix.sh
 !/.config/nvim/
 !/.config/nvim/**
 !/.config/starship.toml
@@ -29,7 +32,6 @@
 !/.zshenv
 !/.config/zsh/
 !/.config/zsh/.zshrc
-!/.config/zsh/.zprofile
 .config/zsh/.zshrc.local
 !/Makefile
 !/README.md
