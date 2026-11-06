@@ -77,7 +77,7 @@ opt.findfunc = "v:lua.FindFiles"
 opt.grepprg = vim.fn.executable("rg") == 1 and "rg --vimgrep --smart-case" or "grep -rnHI --exclude-dir=.git"
 
 -- netrw
-vim.g.netrw_preview = 1 -- プレビューを縦分割で開く
+vim.g.netrw_preview = 1 -- open previews in a vertical split
 
 -- Diagnostics
 vim.diagnostic.config({

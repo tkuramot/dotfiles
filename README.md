@@ -28,14 +28,14 @@ sudo nix --extra-experimental-features 'nix-command flakes' run nix-darwin/maste
 # Dependencies
 sudo apt install -y git curl zsh
 
-# Nix (restart the shell afterwards)
-curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh
+# Nix, multi-user (restart the shell afterwards)
+curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --daemon
 
 # dotfiles
 git clone https://github.com/tkuramot/dotfiles ~/dotfiles && cd ~/dotfiles
 
 # Home Manager (first run only; use `make home-switch` afterwards)
-nix --extra-experimental-features 'nix-command flakes' run home-manager/master -- switch --flake .#parrot -b backup
+NIX_CONFIG='experimental-features = nix-command flakes' nix run home-manager/master -- switch --flake .#parrot -b backup
 
 # Login shell (log out and back in afterwards)
 chsh -s "$(which zsh)"
