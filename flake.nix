@@ -11,13 +11,18 @@
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixgl = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = { nixpkgs, home-manager, nix-darwin, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, nix-darwin, ... }:
   let
     profiles = import ./profiles.nix;
     mkHome = name: { system, username, homeDirectory }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
+        extraSpecialArgs = { inherit inputs; };
         modules = [
           ./modules/home.nix
           { home.username = username; home.homeDirectory = homeDirectory; }
@@ -32,6 +37,7 @@
       };
   in {
     homeConfigurations = builtins.mapAttrs mkHome profiles;
-    darwinConfigurations = builtins.mapAttrs mkDarwin profiles;
+    darwinConfigurations = builtins.mapAttrs mkDarwin
+      (nixpkgs.lib.filterAttrs (_: p: nixpkgs.lib.hasSuffix "-darwin" p.system) profiles);
   };
 }

@@ -1,5 +1,6 @@
-{ config, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 let
+  inherit (pkgs.stdenv.hostPlatform) isDarwin isLinux;
   dotfilesDir = "${config.home.homeDirectory}/dotfiles";
   link = path: config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/${path}";
   linkConfig = path: link ".config/${path}";
@@ -29,7 +30,14 @@ in {
     typescript
     watchman
     wget
+  ] ++ lib.optionals isLinux [
+    (config.lib.nixGL.wrap alacritty)
   ];
+
+  targets.genericLinux = lib.mkIf isLinux {
+    enable = true;
+    nixGL.packages = inputs.nixgl.packages;
+  };
 
   home.file = {
     ".zshenv".source = link ".zshenv";
@@ -38,7 +46,6 @@ in {
   };
 
   xdg.configFile = {
-    "aerospace".source = linkConfig "aerospace";
     "alacritty".source = linkConfig "alacritty";
     "direnv".source = linkConfig "direnv";
     "gh".source = linkConfig "gh";
@@ -47,5 +54,7 @@ in {
     "zsh".source = linkConfig "zsh";
     "nix/nix.conf".source = linkConfig "nix/nix.conf";
     "starship.toml".source = linkConfig "starship.toml";
+  } // lib.optionalAttrs isDarwin {
+    "aerospace".source = linkConfig "aerospace";
   };
 }

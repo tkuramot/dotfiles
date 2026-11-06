@@ -11,7 +11,7 @@ make darwin-switch   # nix-darwin: build and activate (sudo)
 make darwin-build    # nix-darwin: build without activating
 ```
 
-Underlying commands: `home-manager switch/build --flake .#default`, `sudo darwin-rebuild switch --flake .#default`.
+Underlying commands: `home-manager switch/build --flake .#macos`, `sudo darwin-rebuild switch --flake .#macos`.
 
 The two layers are **independent** — Home Manager is not imported as a nix-darwin module. Changing a package or a symlink needs only `make home-switch`; changing macOS defaults or a cask needs only `make darwin-switch`.
 
@@ -23,8 +23,15 @@ This is a **Nix Flakes + Home Manager + nix-darwin** dotfiles repo for macOS (aa
 
 **nix-darwin tracks `master`** and refuses to evaluate when its release string differs from the locked nixpkgs. `nixpkgs.url` is `nixos-unstable`, so after `nix flake update` the two can drift apart; if they do, pin the `nix-darwin` url to the matching `nix-darwin-YY.MM` branch (or back to `master` once master matches nixpkgs again).
 
-**Profiles** (`profiles.nix`): Each entry maps a name to a system/user/home triple. Currently one profile:
-- `default` — username: kura
+**Profiles** (`profiles.nix`): Each entry maps a name to a system/user/home triple:
+- `macos` — aarch64-darwin (macOS), username: kura
+- `parrot` — aarch64-linux (ParrotOS ARM, Home Manager only), username: kura
+
+`darwinConfigurations` is built only from profiles whose system ends in `-darwin`. `make home-switch`/`home-build` pick `parrot` on Linux and `macos` otherwise (override with `HOME_PROFILE=`). OS-specific bits live in the shared `modules/home.nix`, gated with `pkgs.stdenv.hostPlatform.isDarwin`/`isLinux`:
+- macOS only: the `aerospace` link.
+- Linux only: `targets.genericLinux` with nixGL (from the `nixgl` flake input, passed via `extraSpecialArgs`); GPU apps are wrapped with `config.lib.nixGL.wrap` (alacritty; on macOS it is a Homebrew cask instead).
+
+Everything else on ParrotOS (base system, privileged security tools that ship with Parrot) stays with apt. Linux-only *module imports* cannot be gated on `pkgs` (infinite recursion); if one is ever needed, split a Linux-only file back out and select it in `mkHome` by system suffix.
 
 **Modules** — one file per layer (they are different module systems and cannot be merged):
 - `modules/home.nix` — the Home Manager layer: state version, `home.packages`, and the symlink table (`home.file` / `xdg.configFile`)
@@ -40,7 +47,7 @@ Config directories are linked **whole**, including ones whose tools write machin
 
 `nix` is the one exception, linked at *file* level: nothing currently shares `~/.config/nix`, so a single-file link avoids needing a deny line for `registry.json`.
 
-Adding a new tool: add the package to `home.packages` in `modules/home.nix`, drop its config under `.config/`, add one line to the symlink table in the same file, and whitelist the path in `.gitignore`. If a second machine is ever added, reintroduce per-profile module selection in `profiles.nix` at that point — not before.
+Adding a new tool: add the package to `home.packages` in `modules/home.nix`, drop its config under `.config/`, add one line to the symlink table in the same file, and whitelist the path in `.gitignore`. Linux-only packages go in the `lib.optionals isLinux` list in the same file.
 
 ## nix-darwin layer
 
