@@ -5,15 +5,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Build & Deploy
 
 ```bash
-make switch          # Home Manager: build and activate
-make build           # Home Manager: build only (dry run)
+make home-switch     # Home Manager: build and activate
+make home-build      # Home Manager: build without activating
 make darwin-switch   # nix-darwin: build and activate (sudo)
-make darwin-build    # nix-darwin: build only (dry run)
+make darwin-build    # nix-darwin: build without activating
 ```
 
 Underlying commands: `home-manager switch/build --flake .#default`, `sudo darwin-rebuild switch --flake .#default`.
 
-The two layers are **independent** — Home Manager is not imported as a nix-darwin module. Changing a package or a symlink needs only `make switch`; changing macOS defaults or a cask needs only `make darwin-switch`.
+The two layers are **independent** — Home Manager is not imported as a nix-darwin module. Changing a package or a symlink needs only `make home-switch`; changing macOS defaults or a cask needs only `make darwin-switch`.
 
 ## Architecture
 
@@ -30,7 +30,7 @@ This is a **Nix Flakes + Home Manager + nix-darwin** dotfiles repo for macOS (aa
 - `modules/home.nix` — the Home Manager layer: state version, `home.packages`, and the symlink table (`home.file` / `xdg.configFile`)
 - `modules/darwin.nix` — the nix-darwin (system) layer: Homebrew casks, `system.defaults`, Caps Lock remap
 
-**Single source of truth: `.config/`.** Nix owns *packages and symlinks only*; it never generates config text — there are no `programs.*` modules at all. Every config file lives as a real file in this repo (`.config/**`, `.zshenv`, `.gitconfig`, `.vimrc`) and is linked into `$HOME` with `config.lib.file.mkOutOfStoreSymlink`, so edits take effect immediately — `make switch` is only needed when adding a package or a new link.
+**Single source of truth: `.config/`.** Nix owns *packages and symlinks only*; it never generates config text — there are no `programs.*` modules at all. Every config file lives as a real file in this repo (`.config/**`, `.zshenv`, `.gitconfig`, `.vimrc`) and is linked into `$HOME` with `config.lib.file.mkOutOfStoreSymlink`, so edits take effect immediately — `make home-switch` is only needed when adding a package or a new link.
 
 Do **not** reintroduce `programs.<tool>.settings` / `extraConfig` for a tool whose config lives in `.config/`: it would both shadow the real file and re-split the source of truth. Add the package to `home.packages` and a link to the symlink table in `modules/home.nix` instead.
 

@@ -1,9 +1,9 @@
-.PHONY: switch build darwin-switch darwin-build
+.PHONY: home-switch home-build darwin-switch darwin-build
 
-switch:
+home-switch:
 	home-manager switch --flake .#default
 
-build:
+home-build:
 	home-manager build --flake .#default
 
 darwin-switch:
