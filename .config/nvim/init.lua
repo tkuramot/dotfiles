@@ -33,7 +33,7 @@ opt.wrap = false
 opt.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 opt.foldlevel = 99 -- open all folds by default
-opt.foldtext = "" -- keep syntax highlighting
+opt.foldtext = ""  -- keep syntax highlighting
 
 -- Indent
 opt.expandtab = true
@@ -60,9 +60,9 @@ map("i", "jj", "<Esc>")
 -- :find and :grep via rg, falling back to git ls-files / find and grep
 function _G.FindFiles(query, _)
   local cmds = {
-    { "rg", "--files", "--hidden", "--glob", "!.git" },
-    { "git", "ls-files", "-co", "--exclude-standard" },
-    { "find", ".", "-name", ".git", "-prune", "-o", "-type", "f", "-print" },
+    { "rg",   "--files",  "--hidden", "--glob",            "!.git" },
+    { "git",  "ls-files", "-co",      "--exclude-standard" },
+    { "find", ".",        "-name",    ".git",              "-prune", "-o", "-type", "f", "-print" },
   }
   for _, cmd in ipairs(cmds) do
     if vim.fn.executable(cmd[1]) == 1 then
@@ -77,7 +77,7 @@ opt.findfunc = "v:lua.FindFiles"
 opt.grepprg = vim.fn.executable("rg") == 1 and "rg --vimgrep --smart-case" or "grep -rnHI --exclude-dir=.git"
 
 -- netrw
-vim.g.netrw_liststyle = 3
+vim.g.netrw_preview = 1 -- プレビューを縦分割で開く
 
 -- Diagnostics
 vim.diagnostic.config({
