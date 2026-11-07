@@ -26,7 +26,11 @@
     profiles = import ./profiles.nix;
     mkHome = name: { system, username, homeDirectory }:
       home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfreePredicate = pkg:
+            builtins.elem (nixpkgs.lib.getName pkg) [ "claude-code" ];
+        };
         extraSpecialArgs = { inherit inputs; };
         modules = [
           ./modules/home.nix

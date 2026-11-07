@@ -47,7 +47,7 @@ Config directories are linked **whole**, including ones whose tools write machin
 
 `nix` is the one exception, linked at *file* level: nothing currently shares `~/.config/nix`, so a single-file link avoids needing a deny line for `registry.json`.
 
-Adding a new tool: add the package to `home.packages` in `modules/home.nix`, drop its config under `.config/`, add one line to the symlink table in the same file, and whitelist the path in `.gitignore`. Linux-only packages go in the `lib.optionals isLinux` list in the same file.
+Adding a new tool: add the package to `home.packages` in `modules/home.nix`, drop its config under `.config/`, add one line to the symlink table in the same file, and whitelist the path in `.gitignore`. Linux-only packages go in the `lib.optionals isLinux` list in the same file. Unfree packages must also be named in the `allowUnfreePredicate` list in `mkHome` (`flake.nix`).
 
 ## nix-darwin layer
 

@@ -30,6 +30,7 @@ in {
     typescript
     watchman
     wget
+    claude-code
   ] ++ lib.optionals isLinux [
     (config.lib.nixGL.wrap alacritty)
   ];
