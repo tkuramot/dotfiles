@@ -1,5 +1,7 @@
 export LANG=en_US.UTF-8
 export EDITOR=vim
+# sudoedit resolves the editor via sudo's secure_path, which lacks ~/.nix-profile/bin
+export SUDO_EDITOR="$(command -v nvim)"
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
 # colorize man command
