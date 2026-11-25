@@ -13,6 +13,7 @@
   homebrew = {
     enable = true;
     onActivation.cleanup = "none";
+    taps = [ "stablyai/orca" ];
     casks = [
       "aerospace"
       {
@@ -29,6 +30,7 @@
       "iterm2"
       "libreoffice"
       "obsidian"
+      "stablyai/orca/orca"
       "spotify"
       "virtualbox"
       "visual-studio-code"
