@@ -22,7 +22,7 @@ typeset -U path
 path=(~/.local/bin /run/current-system/sw/bin(N) $path)
 
 if [[ -z "$TMUX" ]] && command -v tmux &>/dev/null; then
-  exec tmux new-session -A -s default
+  exec tmux new-session -A -s main
 fi
 
 zsh_state_dir=${XDG_STATE_HOME:-$HOME/.local/state}/zsh
