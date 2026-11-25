@@ -12,6 +12,7 @@ in {
     tmux
     starship
     gh
+    gh-dash
     zoxide
     tree
     ripgrep
