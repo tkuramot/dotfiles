@@ -4,6 +4,7 @@
 	c = commit
 	co = checkout
 	conflicts = !git ls-files -u | cut -f 2 | sort -u
+	d = difftool -d
 	f = fetch
 	r = rebase
 	s = status -s
@@ -41,3 +42,9 @@
 
 [url "ssh://git@github.com"]
 	insteadOf = https://github.com
+
+[diff]
+	tool = nvimdiff
+
+[difftool]
+	prompt = false

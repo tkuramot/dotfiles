@@ -138,5 +138,18 @@ autocmd("FileType", {
   end,
 })
 
+autocmd("VimResized", {
+  group = augroup("my.equalize_windows"),
+  command = "wincmd =",
+})
+
+-- Send a range to the coding agent in another tmux pane (lua/agent.lua)
+vim.g.agent = "claude"
+local agent = require("agent")
+vim.api.nvim_create_user_command("AgentSend", function(o) agent.send(o.line1, o.line2) end, { range = true })
+
+-- :DiffTool; also turns `nvim -d dir1 dir2` (git difftool -d) into a file list
+vim.cmd.packadd("nvim.difftool")
+
 -- experimental
 require("vim._core.ui2").enable()
