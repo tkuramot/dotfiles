@@ -32,6 +32,7 @@ in {
     watchman
     wget
     claude-code
+    nerd-fonts.meslo-lg
   ] ++ lib.optionals isLinux [
     (config.lib.nixGL.wrap alacritty)
   ];
@@ -51,6 +52,7 @@ in {
     "alacritty".source = linkConfig "alacritty";
     "direnv".source = linkConfig "direnv";
     "gh".source = linkConfig "gh";
+    "gh-dash".source = linkConfig "gh-dash";
     "nvim".source = linkConfig "nvim";
     "tmux".source = linkConfig "tmux";
     "zsh".source = linkConfig "zsh";

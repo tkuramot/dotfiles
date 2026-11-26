@@ -10,6 +10,8 @@
 !/.config/direnv/**
 !/.config/gh/
 !/.config/gh/**
+!/.config/gh-dash/
+!/.config/gh-dash/**
 !/flake.nix
 !/flake.lock
 !/profiles.nix
