@@ -39,6 +39,7 @@
 !/README.md
 !/CLAUDE.md
 /.config/nvim/lazy-lock.json
+/.config/nvim/init.local.lua
 
 /.config/gh/hosts.yml
 

@@ -153,3 +153,7 @@ vim.cmd.packadd("nvim.difftool")
 
 -- experimental
 require("vim._core.ui2").enable()
+
+-- machine-local overrides (untracked)
+local local_init = vim.fn.stdpath("config") .. "/init.local.lua"
+if vim.uv.fs_stat(local_init) then dofile(local_init) end
